@@ -81,3 +81,4 @@ fs.writeFileSync(path.join(distDir, 'index.html'), indexHtml);
 console.log('创建 index.html 重定向页面');
 
 console.log('构建完成！');
+// 更新时间 Fri Jul 10 07:02:53     2026
