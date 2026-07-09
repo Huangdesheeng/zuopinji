@@ -1,0 +1,8 @@
+{
+  "name": "zuopinji",
+  "version": "1.0.0",
+  "description": "黄德生作品集",
+  "scripts": {
+    "build": "echo 'Build complete'"
+  }
+}
