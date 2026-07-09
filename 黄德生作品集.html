@@ -1,0 +1,2810 @@
+<!DOCTYPE html><!-- v2.2 -->
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>黄德生 | 视觉·品牌·UI·平面·美工</title>
+    <style>/* v2.1 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* 全局星空背景 */
+        .global-starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .global-star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            border-radius: 50%;
+            animation: globalStarTwinkle linear infinite;
+        }
+        @keyframes globalStarTwinkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        /* ========== 顶部导航 ========== */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 16px 6vw;
+            display: flex;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        header.scrolled {
+            padding: 12px 6vw;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        }
+        .logo {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        nav a {
+            text-decoration: none;
+            color: #999;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            padding: 6px 12px;
+            transition: color 0.3s;
+        }
+        nav a:hover, nav a.active {
+            color: #fff;
+        }
+        .nav-dot {
+            color: #555;
+            font-size: 10px;
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-left: auto;
+        }
+        .nav-download {
+            text-decoration: none;
+            color: #777;
+            font-size: 13px;
+            padding: 7px 18px;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 20px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-download:hover {
+            color: #fff;
+            border-color: rgba(255,255,255,0.35);
+        }
+        .nav-download svg {
+            width: 16px;
+            height: 16px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.5;
+        }
+        .nav-lang {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            color: #555;
+        }
+        .nav-lang a {
+            text-decoration: none;
+            color: #555;
+            padding: 4px 4px;
+            transition: color 0.3s;
+        }
+        .nav-lang a:hover, .nav-lang a.active {
+            color: #fff;
+        }
+        .nav-lang .sep {
+            color: #333;
+            font-size: 13px;
+        }
+
+        /* ========== Hero区域 ========== */
+        .hero {
+            min-height: 100vh !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            padding: 120px 6vw 80px !important;
+            text-align: center !important;
+            position: relative !important;
+            overflow: hidden !important;
+            background: radial-gradient(ellipse at 20% 50%, rgba(102,126,234,0.25) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 30%, rgba(118,75,162,0.2) 0%, transparent 50%),
+                        radial-gradient(ellipse at 50% 80%, rgba(240,147,251,0.15) 0%, transparent 50%),
+                        #0a0a0a !important;
+            perspective: 1000px;
+            cursor: none;
+        }
+
+        /* 1. 渐变光斑 */
+        .gradient-orbs {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            z-index: 1 !important;
+            overflow: hidden !important;
+            filter: blur(60px) !important;
+            opacity: 0.8 !important;
+        }
+        .orb {
+            position: absolute !important;
+            border-radius: 50% !important;
+            animation: orbFloat 20s ease-in-out infinite !important;
+        }
+        .orb-1 {
+            width: 600px !important;
+            height: 600px !important;
+            background: radial-gradient(circle, rgba(102,126,234,0.8) 0%, transparent 70%) !important;
+            top: 5% !important;
+            left: 5% !important;
+            animation-delay: 0s !important;
+        }
+        .orb-2 {
+            width: 500px !important;
+            height: 500px !important;
+            background: radial-gradient(circle, rgba(118,75,162,0.8) 0%, transparent 70%) !important;
+            top: 55% !important;
+            right: 5% !important;
+            animation-delay: -5s !important;
+            animation-duration: 25s !important;
+        }
+        .orb-3 {
+            width: 450px !important;
+            height: 450px !important;
+            background: radial-gradient(circle, rgba(240,147,251,0.8) 0%, transparent 70%) !important;
+            bottom: 5% !important;
+            left: 35% !important;
+            animation-delay: -10s !important;
+            animation-duration: 22s !important;
+        }
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(100px, -50px) scale(1.1); }
+            50% { transform: translate(-50px, 80px) scale(0.9); }
+            75% { transform: translate(80px, 40px) scale(1.05); }
+        }
+
+        /* 2. 网格点阵 */
+        .dot-grid {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            z-index: 2 !important;
+            pointer-events: none !important;
+        }
+        .dot-grid canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* 3. 波浪线条 */
+        .wave-lines {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            z-index: 2 !important;
+            pointer-events: none !important;
+            opacity: 0.15 !important;
+        }
+
+        /* 4. 星空效果 */
+        .starfield {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            z-index: 3 !important;
+            pointer-events: none !important;
+        }
+        .star {
+            position: absolute !important;
+            width: 2px !important;
+            height: 2px !important;
+            background: #fff !important;
+            border-radius: 50% !important;
+            animation: starFly linear infinite !important;
+        }
+        @keyframes starFly {
+            0% { transform: translateZ(0) scale(1); opacity: 1; }
+            100% { transform: translateZ(800px) scale(3); opacity: 0; }
+        }
+
+        /* 5. 噪点纹理 */
+        .noise-overlay {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            z-index: 8 !important;
+            pointer-events: none !important;
+            opacity: 0.03 !important;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E") !important;
+            animation: noiseAnim 0.5s steps(10) infinite !important;
+        }
+        @keyframes noiseAnim {
+            0% { transform: translate(0, 0); }
+            10% { transform: translate(-2%, -2%); }
+            20% { transform: translate(2%, 2%); }
+            30% { transform: translate(-1%, 1%); }
+            40% { transform: translate(1%, -1%); }
+            50% { transform: translate(-2%, 2%); }
+            60% { transform: translate(2%, -2%); }
+            70% { transform: translate(-1%, -1%); }
+            80% { transform: translate(1%, 1%); }
+            90% { transform: translate(-2%, -2%); }
+            100% { transform: translate(0, 0); }
+        }
+
+        /* 6. 极光效果 */
+        .aurora {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 200% !important;
+            height: 100% !important;
+            z-index: 2 !important;
+            background: linear-gradient(180deg,
+                transparent 0%,
+                rgba(0, 255, 128, 0.08) 20%,
+                rgba(0, 128, 255, 0.12) 40%,
+                rgba(128, 0, 255, 0.08) 60%,
+                transparent 100%) !important;
+            animation: auroraFlow 15s ease-in-out infinite !important;
+            filter: blur(40px) !important;
+        }
+        @keyframes auroraFlow {
+            0%, 100% { transform: translateX(0) skewX(0deg); }
+            50% { transform: translateX(-25%) skewX(5deg); }
+        }
+
+        /* 7. 鼠标涟漪 */
+        .ripple {
+            position: absolute !important;
+            border-radius: 50% !important;
+            border: 1px solid rgba(255,255,255,0.3) !important;
+            pointer-events: none !important;
+            z-index: 9 !important;
+            animation: rippleExpand 1s ease-out forwards !important;
+        }
+        @keyframes rippleExpand {
+            0% { width: 0; height: 0; opacity: 1; }
+            100% { width: 300px; height: 300px; opacity: 0; }
+        }
+
+        /* 8. 萤火虫 */
+        .fireflies {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            z-index: 5 !important;
+            pointer-events: none !important;
+        }
+        .firefly {
+            position: absolute !important;
+            width: 6px !important;
+            height: 6px !important;
+            background: radial-gradient(circle, rgba(255,255,150,0.8), transparent) !important;
+            border-radius: 50% !important;
+            animation: fireflyFloat 8s ease-in-out infinite, fireflyGlow 2s ease-in-out infinite !important;
+        }
+        @keyframes fireflyFloat {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(50px, -30px); }
+            50% { transform: translate(-30px, 50px); }
+            75% { transform: translate(40px, 20px); }
+        }
+        @keyframes fireflyGlow {
+            0%, 100% { opacity: 0.2; box-shadow: 0 0 6px 2px rgba(255,255,150,0.3); }
+            50% { opacity: 1; box-shadow: 0 0 20px 8px rgba(255,255,150,0.6); }
+        }
+
+        /* 9. 流星 */
+        .meteor {
+            position: absolute !important;
+            width: 150px !important;
+            height: 2px !important;
+            background: linear-gradient(90deg, rgba(255,255,255,0.8), transparent) !important;
+            border-radius: 2px !important;
+            z-index: 6 !important;
+            pointer-events: none !important;
+            animation: meteorFall 1.5s linear forwards !important;
+        }
+        @keyframes meteorFall {
+            0% { transform: translate(0, 0) rotate(-35deg); opacity: 1; }
+            100% { transform: translate(400px, 400px) rotate(-35deg); opacity: 0; }
+        }
+
+        /* 10. 呼吸光环 */
+        .cursor-glow {
+            position: fixed !important;
+            width: 300px !important;
+            height: 300px !important;
+            border-radius: 50% !important;
+            background: radial-gradient(circle, rgba(102,126,234,0.15), transparent 70%) !important;
+            pointer-events: none !important;
+            z-index: 7 !important;
+            transform: translate(-50%, -50%) !important;
+            transition: opacity 0.3s !important;
+        }
+
+        /* 11. 光标拖尾 */
+        .cursor-trail {
+            position: fixed !important;
+            width: 12px !important;
+            height: 12px !important;
+            border-radius: 50% !important;
+            border: 1px solid rgba(255,255,255,0.5) !important;
+            pointer-events: none !important;
+            z-index: 9999 !important;
+            transform: translate(-50%, -50%) !important;
+            transition: transform 0.1s ease-out, width 0.2s, height 0.2s !important;
+        }
+        .cursor-trail.hovering {
+            width: 40px !important;
+            height: 40px !important;
+            border-color: rgba(255,255,255,0.8) !important;
+            background: rgba(255,255,255,0.1) !important;
+        }
+
+        /* 装饰圆环 */
+        .hero-deco {
+            position: absolute !important;
+            border-radius: 50% !important;
+            border: 1px solid rgba(255,255,255,0.05) !important;
+            z-index: 4 !important;
+            animation: decoRotate 20s linear infinite !important;
+        }
+        .hero-deco-1 {
+            width: 500px !important;
+            height: 500px !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+        }
+        .hero-deco-2 {
+            width: 700px !important;
+            height: 700px !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            animation-duration: 30s !important;
+            animation-direction: reverse !important;
+        }
+        @keyframes decoRotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .hero-content {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            z-index: 10 !important;
+            transition: transform 0.1s ease-out !important;
+            transform-style: preserve-3d !important;
+            text-align: center !important;
+            border: 3px solid red !important;
+        }
+        .hero-subtitle {
+            font-size: 14px !important;
+            color: #666 !important;
+            letter-spacing: 20px !important;
+            margin-bottom: 24px !important;
+            text-transform: uppercase !important;
+            opacity: 0 !important;
+            animation: letterSpacingIn 1.2s ease 0.5s forwards !important;
+            position: relative !important;
+            display: inline-block !important;
+        }
+        .hero-subtitle::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #fff;
+            transition: width 0.4s ease;
+        }
+        .hero-subtitle:hover::after {
+            width: 100%;
+        }
+        .hero h1 {
+            font-size: clamp(52px, 9vw, 100px) !important;
+            font-weight: 700 !important;
+            line-height: 1.1 !important;
+            margin-bottom: 28px !important;
+            letter-spacing: 4px !important;
+            background: linear-gradient(90deg, #fff, #b8d4ff, #fff) !important;
+            background-size: 200% 100% !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+            animation: slideUpFade 1s ease 0.2s forwards, shimmer 4s ease-in-out 1.2s infinite !important;
+            opacity: 0 !important;
+            transform: translateY(40px) !important;
+        }
+        .hero-desc {
+            font-size: 16px !important;
+            color: #666 !important;
+            letter-spacing: 3px !important;
+            opacity: 0 !important;
+            transform: translateY(20px) !important;
+            animation: slideUpFade 1s ease 0.8s forwards !important;
+            position: relative !important;
+            display: inline-block !important;
+        }
+        .hero-desc::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #fff;
+            transition: width 0.4s ease;
+        }
+        .hero-desc:hover::after {
+            width: 100%;
+        }
+        @keyframes letterSpacingIn {
+            to {
+                opacity: 1;
+                letter-spacing: 6px;
+            }
+        }
+        @keyframes slideUpFade {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes shimmer {
+            0%, 100% { background-position: -100% 0; }
+            50% { background-position: 200% 0; }
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ========== 通用板块 ========== */
+        .section {
+            max-width: 1400px;
+            margin: 0 auto 100px;
+            padding: 0 6vw;
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 48px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .section-num {
+            font-size: 48px;
+            font-weight: 700;
+            color: rgba(255,255,255,0.15);
+            line-height: 1;
+        }
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #fff;
+        }
+        .section-title small {
+            display: block;
+            font-size: 14px;
+            font-weight: 400;
+            color: #888;
+            margin-top: 4px;
+        }
+
+        /* ========== 品牌视觉模块 ========== */
+        .brand-section {
+            max-width: 1400px;
+            margin: 80px auto 100px;
+            padding: 0 6vw;
+            display: grid;
+            grid-template-columns: 0.8fr 2fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .brand-section-reverse {
+            grid-template-columns: 2fr 0.8fr;
+        }
+        .brand-section-reverse .brand-left {
+            order: 2;
+        }
+        .brand-section-reverse .brand-right {
+            order: 1;
+        }
+        .brand-section-reverse .brand-left.visible {
+            transform: translateX(40px);
+        }
+        .brand-left {
+            transition: all 0.8s ease;
+        }
+        .brand-num {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .brand-num::after {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: #444;
+        }
+        .brand-en {
+            font-size: 15px;
+            color: #555;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+        }
+        .brand-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 36px;
+            line-height: 1.2;
+        }
+        .brand-list {
+            list-style: none;
+            margin-bottom: 36px;
+        }
+        .brand-list li {
+            font-size: 16px;
+            color: #999;
+            padding: 12px 0;
+            padding-left: 20px;
+            position: relative;
+            letter-spacing: 1px;
+        }
+        .brand-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 6px;
+            height: 6px;
+            background: #4facfe;
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+        .brand-btn {
+            display: inline-block;
+            padding: 12px 32px;
+            background: #fff;
+            color: #000;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        .brand-btn:hover {
+            background: #4facfe;
+            color: #fff;
+        }
+        .brand-right {
+            position: relative;
+            height: 420px;
+            transition: all 0.8s ease 0.2s;
+        }
+        .brand-carousel {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            perspective: 1200px;
+        }
+        .brand-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 85%;
+            height: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.6);
+            opacity: 0;
+            transform: translateX(80px) scale(0.85) rotateY(-15deg);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background: #1a1a1a;
+        }
+        .brand-slide.active {
+            opacity: 1;
+            transform: translateX(0) scale(1) rotateY(0deg);
+            z-index: 3;
+        }
+        .brand-slide.prev {
+            opacity: 0.8;
+            transform: translateX(-70px) scale(0.88) rotateY(15deg);
+            z-index: 1;
+            width: 75%;
+        }
+        .brand-slide.next {
+            opacity: 0.9;
+            transform: translateX(60px) scale(0.92) rotateY(-10deg);
+            z-index: 2;
+            width: 80%;
+        }
+        .brand-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            transition: transform 0.8s ease;
+        }
+        .brand-slide:hover img {
+            transform: scale(1.05);
+        }
+        .brand-controls {
+            position: absolute;
+            bottom: -60px;
+            right: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .brand-arrow {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .brand-arrow:hover {
+            background: rgba(255,255,255,0.25);
+            transform: scale(1.1);
+        }
+        .brand-dots {
+            display: flex;
+            gap: 8px;
+            margin-left: 8px;
+        }
+        .brand-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.25);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .brand-dot.active {
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+            width: 28px;
+            border-radius: 5px;
+            box-shadow: 0 0 12px rgba(79, 172, 254, 0.6);
+        }
+
+        /* ========== 案例列表页 ========== */
+        .case-list-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0a;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            overflow-y: auto;
+        }
+        .case-list-modal.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        .case-list-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10,10,10,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+        .case-list-back {
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        .case-list-back:hover {
+            opacity: 0.7;
+        }
+        .case-list-title {
+            text-align: center;
+        }
+        .case-list-title small {
+            display: block;
+            font-size: 11px;
+            color: #555;
+            letter-spacing: 2px;
+            margin-bottom: 4px;
+        }
+        .case-list-title h3 {
+            font-size: 16px;
+            color: #fff;
+            font-weight: 600;
+        }
+        .case-list-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: transparent;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        .case-list-close:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        .case-list-content {
+            padding: 100px 60px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+        .case-card {
+            border-radius: 16px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        .case-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255,255,255,0.15);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+        .case-card-img {
+            aspect-ratio: 16/10;
+            overflow: hidden;
+        }
+        .case-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+        }
+        .case-card:hover .case-card-img img {
+            transform: scale(1.05);
+        }
+        .case-card-info {
+            padding: 0;
+        }
+
+        /* ========== 案例详情页 ========== */
+        .case-detail-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0a;
+            z-index: 2100;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            overflow-y: auto;
+        }
+        .case-detail-modal.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        .case-detail-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10,10,10,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+        .case-detail-back {
+            color: #888;
+            font-size: 14px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .case-detail-back:hover {
+            color: #fff;
+        }
+        .case-detail-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: transparent;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        .case-detail-close:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        .case-detail-content {
+            padding: 80px 0 0;
+        }
+        .case-detail-hero {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .case-detail-hero img {
+            width: 100%;
+            display: block;
+        }
+        .case-detail-gallery {
+            max-width: 800px;
+            margin: 40px auto 80px;
+            padding: 0 60px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+        .case-detail-gallery img {
+            width: 100%;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+        .case-detail-gallery img:hover {
+            transform: scale(1.02);
+        }
+        @media (max-width: 768px) {
+            .case-grid {
+                grid-template-columns: 1fr;
+            }
+            .case-detail-gallery {
+                grid-template-columns: 1fr;
+                padding: 0 24px;
+            }
+            .case-list-content, .case-detail-content {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        }
+
+        /* ========== 作品网格 ========== */
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 28px;
+        }
+        .work-card {
+            background: rgba(255,255,255,0.04);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .work-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+            border-color: rgba(255,255,255,0.12);
+        }
+        .work-card-img {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+        .work-card-img::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        .work-card:hover .work-card-img::before {
+            left: 100%;
+        }
+        .work-card-img.brand { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .work-card-img.ecom { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .work-card-img.render { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .work-card-img.aigc { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+
+        .work-card-body {
+            padding: 24px;
+        }
+        .work-card-body h3 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        .work-card-body p {
+            font-size: 14px;
+            color: #999;
+            line-height: 1.7;
+        }
+        .work-card-tag {
+            display: inline-block;
+            margin-top: 14px;
+            padding: 4px 12px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        /* ========== 关于我 ========== */
+        .about-section {
+            background: transparent;
+            padding: 80px 6vw;
+        }
+        .about-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: start;
+        }
+        .about-photo {
+            position: relative;
+        }
+        .about-photo img {
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
+            object-fit: cover;
+            object-position: center top;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+        .about-content {
+            color: #fff;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 40px;
+        }
+        .about-block {
+            padding: 30px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .about-block:last-child {
+            border-bottom: none;
+        }
+        .about-block-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+        }
+        .about-block-title span {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .about-block p {
+            font-size: 15px;
+            color: #aaa;
+            line-height: 1.9;
+        }
+        .about-block .edu-text {
+            font-size: 15px;
+            color: #aaa;
+        }
+        .skill-item {
+            margin-bottom: 24px;
+        }
+        .skill-item h5 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .skill-item p {
+            font-size: 14px;
+            color: #888;
+            line-height: 1.7;
+        }
+        @media (max-width: 768px) {
+            .about-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .about-photo {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+        }
+
+        /* ========== 联系方式 ========== */
+        .contact-section {
+            background: transparent;
+            padding: 80px 6vw 100px;
+            margin-top: 100px;
+        }
+        .contact-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .contact-header {
+            margin-bottom: 50px;
+        }
+        .contact-header h2 {
+            font-size: 42px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 16px;
+        }
+        .contact-header p {
+            font-size: 16px;
+            color: #888;
+            font-style: italic;
+        }
+        .contact-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .contact-item {
+            width: 260px;
+            background: rgba(255,255,255,0.03);
+            padding: 40px 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.3s;
+            text-align: center;
+        }
+        .contact-item:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.15);
+            transform: translateY(-4px);
+        }
+        .contact-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 22px;
+            color: #fff;
+        }
+        .contact-item label {
+            display: block;
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .contact-item p {
+            font-size: 15px;
+            color: #fff;
+            line-height: 1.8;
+            font-family: 'Courier New', monospace;
+        }
+        .qr-code {
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 16px;
+            border-radius: 10px;
+            background: #fff;
+            padding: 8px;
+            display: block;
+        }
+
+        /* ========== 页脚 ========== */
+        footer {
+            background: transparent;
+            padding: 24px 6vw;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        footer p {
+            font-size: 13px;
+            color: #888;
+        }
+
+        /* ========== 回到顶部 ========== */
+        .back-top {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            backdrop-filter: blur(10px);
+        }
+        .back-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-top:hover {
+            background: #333;
+            transform: translateY(-4px);
+        }
+
+        /* ========== 进度条 ========== */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            z-index: 1001;
+            transition: width 0.1s;
+        }
+
+        /* ========== 移动端 ========== */
+        .menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .menu-btn span {
+            width: 24px;
+            height: 2px;
+            background: #fff;
+            transition: all 0.3s;
+        }
+        @media (max-width: 768px) {
+            .menu-btn { display: flex; }
+            .nav-right { display: none; }
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: #1a1a1a;
+                flex-direction: column;
+                padding: 80px 40px;
+                gap: 24px;
+                box-shadow: -4px 0 20px rgba(0,0,0,0.3);
+                transition: right 0.3s ease;
+            }
+            nav.open { right: 0; }
+            nav a { font-size: 16px; color: #fff; }
+            .nav-dot { display: none; }
+            .hero h1 { font-size: 32px; }
+            .work-grid { grid-template-columns: 1fr; }
+            .about-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 全局星空背景 -->
+    <div class="global-starfield" id="globalStarfield"></div>
+
+    <!-- 进度条 -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- 导航 -->
+    <header id="header">
+        <div class="logo">Leo Huang</div>
+        <div class="menu-btn" id="menuBtn">
+            <span></span><span></span><span></span>
+        </div>
+        <nav id="nav">
+            <a href="#hero">首页</a>
+            <span class="nav-dot">·</span>
+            <a href="#brand">作品</a>
+            <span class="nav-dot">·</span>
+            <a href="#about">简介</a>
+            <span class="nav-dot">·</span>
+            <a href="#contact">联系</a>
+        </nav>
+        <div class="nav-right">
+            <a href="#" class="nav-download">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v6m0 0l-2.5-2.5M12 14l2.5-2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span class="nav-download-text">离线单文版本</span>
+            </a>
+            <div class="nav-lang">
+                <a href="#" class="active">简</a>
+                <span class="sep">/</span>
+                <a href="#">繁</a>
+                <span class="sep">/</span>
+                <a href="#">EN</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="hero" style="position:relative;width:100%;min-height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#0a0a0a;">
+        <!-- 中心大光晕 -->
+        <div style="position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(79,172,254,0.15) 0%,rgba(120,119,198,0.08) 40%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);animation:hPulse 6s ease-in-out infinite;pointer-events:none;z-index:1;"></div>
+        <!-- 网格线 -->
+        <div style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;pointer-events:none;opacity:0.04;background-image:linear-gradient(rgba(255,255,255,0.5) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.5) 1px,transparent 1px);background-size:80px 80px;"></div>
+        <!-- 浮动几何 -->
+        <div style="position:absolute;width:300px;height:300px;border:1px solid rgba(79,172,254,0.15);border-radius:20px;top:15%;left:10%;animation:hFloat1 12s ease-in-out infinite;pointer-events:none;z-index:2;transform:rotate(15deg);"></div>
+        <div style="position:absolute;width:200px;height:200px;border:1px solid rgba(240,147,251,0.12);border-radius:50%;bottom:20%;right:12%;animation:hFloat2 10s ease-in-out infinite;pointer-events:none;z-index:2;"></div>
+        <div style="position:absolute;width:150px;height:150px;border:1px solid rgba(168,230,207,0.1);top:60%;left:8%;animation:hFloat3 14s ease-in-out infinite;pointer-events:none;z-index:2;transform:rotate(45deg);"></div>
+        <!-- 光点粒子 -->
+        <div id="heroParticles" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:3;pointer-events:none;"></div>
+        <!-- 萤火虫 -->
+        <div id="heroFireflies" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:4;pointer-events:none;"></div>
+        <!-- 横线装饰 -->
+        <div style="position:absolute;top:50%;left:0;width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(79,172,254,0.1),transparent);z-index:2;pointer-events:none;"></div>
+        <!-- 主内容 -->
+        <div style="position:relative;z-index:10;text-align:center;padding:0 6vw;">
+            <div style="display:inline-block;padding:6px 20px;border:1px solid rgba(255,255,255,0.1);border-radius:30px;margin-bottom:32px;">
+                <span style="font-size:13px;color:rgba(255,255,255,0.45);letter-spacing:4px;">喜欢异宠，拍摄的复合型人员</span>
+            </div>
+            <h1 style="font-size:clamp(48px,8vw,96px);font-weight:700;line-height:1.1;margin-bottom:28px;letter-spacing:4px;color:#fff;text-shadow:0 0 60px rgba(79,172,254,0.3),0 0 120px rgba(79,172,254,0.1);">你好，我是黄德生</h1>
+            <p style="font-size:16px;color:rgba(255,255,255,0.4);letter-spacing:3px;max-width:600px;margin:0 auto;">"设计是'美学装饰'，更是'认知引导'的商业工具</p>
+        </div>
+    </section>
+    <style>
+        @keyframes hPulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:1}50%{transform:translate(-50%,-50%) scale(1.15);opacity:0.7}}
+        @keyframes hFloat1{0%,100%{transform:rotate(15deg) translate(0,0)}50%{transform:rotate(25deg) translate(20px,-30px)}}
+        @keyframes hFloat2{0%,100%{transform:translate(0,0)}50%{transform:translate(-20px,25px)}}
+        @keyframes hFloat3{0%,100%{transform:rotate(45deg) translate(0,0)}50%{transform:rotate(55deg) translate(15px,-20px)}}
+        @keyframes hParticle{0%,100%{transform:translate(0,0);opacity:0.3}50%{transform:translate(15px,-20px);opacity:0.8}}
+        @keyframes heroFF{0%,100%{transform:translate(0,0)}25%{transform:translate(40px,-25px)}50%{transform:translate(-25px,40px)}75%{transform:translate(30px,15px)}}
+        @keyframes heroFFGlow{0%,100%{opacity:0.15;box-shadow:0 0 6px 2px rgba(255,255,150,0.2)}50%{opacity:0.9;box-shadow:0 0 16px 6px rgba(255,255,150,0.5)}}
+    </style>
+
+    <!-- 全局光标效果 -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+    <div class="cursor-trail" id="cursorTrail"></div>
+
+    <!-- 01 品牌视觉 -->
+    <section class="brand-section" id="brand">
+        <div class="brand-left">
+            <p class="brand-num">01</p>
+            <p class="brand-en">BRAND</p>
+            <h2 class="brand-title">品牌视觉</h2>
+            <ul class="brand-list">
+                <li>LOGO</li>
+                <li>包装</li>
+                <li>其它</li>
+            </ul>
+            <a href="#" class="brand-btn" id="brandCaseBtn">查看更多</a>
+        </div>
+        <div class="brand-right">
+            <div class="brand-carousel">
+                <div class="brand-slide active"><img src="C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/bc385c47-e2e4-4721-b244-c5275370052a-12.jpeg" alt=""></div>
+                <div class="brand-slide"><img src="C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/6d7418b4-f14f-40c3-be87-105762162e3a-12.jpg" alt=""></div>
+                <div class="brand-slide"><img src="C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/d2de24e3-e568-404c-8956-59a234c56b5f-1.jpg" alt=""></div>
+            </div>
+            <div class="brand-controls">
+                <button class="brand-arrow" id="brandPrev">‹</button>
+                <button class="brand-arrow" id="brandNext">›</button>
+                <div class="brand-dots">
+                    <span class="brand-dot active" data-index="0"></span>
+                    <span class="brand-dot" data-index="1"></span>
+                    <span class="brand-dot" data-index="2"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 案例列表页 -->
+    <div class="case-list-modal" id="caseListModal">
+        <div class="case-list-header">
+            <div class="case-list-back" id="caseListBack">← 返回</div>
+            <div class="case-list-title">
+                <small>BRAND</small>
+                <h3>品牌视觉 · 案例列表</h3>
+            </div>
+            <button class="case-list-close" id="caseListClose">×</button>
+        </div>
+        <div class="case-list-content">
+            <div class="case-grid">
+                <div class="case-card" data-case="0">
+                    <div class="case-card-img"><img src="C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/caabe039-42b0-4f18-9c50-f5b24241d7a2-__.jpeg" alt=""></div>
+                </div>
+                <div class="case-card" data-case="1">
+                    <div class="case-card-img"><img src="C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/cd54d1fc-ceb6-40e5-8572-509f0121bfb2-__________01.jpeg" alt=""></div>
+                </div>
+                <div class="case-card" data-case="2">
+                    <div class="case-card-img"><img src="C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/b6ffd183-4db5-4890-9c9f-72b38a907b6d-GN-CW092-199M_011524_OL_____-WF___300G__-___UV-_____-______-__100x100x180-mm.jpeg" alt=""></div>
+                </div>
+                <div class="case-card" data-case="3">
+                    <div class="case-card-img"><img src="C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/757cf6b2-94e6-418e-959a-f5f402f4f1b0-__.jpeg" alt=""></div>
+                </div>
+                <div class="case-card" data-case="4">
+                    <div class="case-card-img"><img src="C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/8cf1cbee-9992-41bd-b6c7-101ed296fa74-Y20___2__1__01.jpeg" alt=""></div>
+                </div>
+                <div class="case-card" data-case="5">
+                    <div class="case-card-img"><img src="C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/326cfcdb-3567-4b52-b87e-b659d014e450-aigo________V1.2_1__82.jpeg" alt=""></div>
+                </div>
+                <div class="case-card" data-case="6">
+                    <div class="case-card-img"><img src="C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/699dbf6f-2f32-4c36-9dd6-7c2dcb12a1d7-_____24.jpeg" alt=""></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 案例详情页 -->
+    <div class="case-detail-modal" id="caseDetailModal">
+        <div class="case-detail-header">
+            <div class="case-detail-back" id="caseDetailBack">← 返回列表</div>
+            <button class="case-detail-close" id="caseDetailClose">×</button>
+        </div>
+        <div class="case-detail-content">
+            <div class="case-detail-hero">
+                <img id="caseDetailCover" src="" alt="">
+            </div>
+            <div class="case-detail-gallery" id="caseDetailGallery"></div>
+        </div>
+    </div>
+
+    <!-- 02 电商包装 -->
+    <section class="brand-section brand-section-reverse" id="ecom">
+        <div class="brand-left">
+            <p class="brand-num">02</p>
+            <p class="brand-en">ECOMMERCE</p>
+            <h2 class="brand-title">电商视觉</h2>
+            <ul class="brand-list">
+                <li>社媒内容</li>
+                <li>详情页设计</li>
+            </ul>
+            <a href="#" class="brand-btn" id="ecomCaseBtn">查看更多</a>
+        </div>
+        <div class="brand-right">
+            <div class="brand-carousel">
+                <div class="brand-slide active"><img src="C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/192577a5-5797-4203-8932-79a78a0b6485-4.png" alt=""></div>
+                <div class="brand-slide"><img src="C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/2ee7ba30-2892-4598-8b8a-7ec6a6f8691d-3.jpeg" alt=""></div>
+                <div class="brand-slide"><img src="C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/611573d8-3936-4946-a154-18ffa55a6d26-download.jpeg" alt=""></div>
+            </div>
+            <div class="brand-controls">
+                <button class="brand-arrow ecom-prev">‹</button>
+                <button class="brand-arrow ecom-next">›</button>
+                <div class="brand-dots">
+                    <span class="brand-dot ecom-dot active" data-index="0"></span>
+                    <span class="brand-dot ecom-dot" data-index="1"></span>
+                    <span class="brand-dot ecom-dot" data-index="2"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 02电商案例列表页 -->
+    <div class="case-list-modal" id="ecomCaseListModal">
+        <div class="case-list-header">
+            <div class="case-list-back" id="ecomCaseListBack">← 返回</div>
+            <div class="case-list-title">
+                <small>ECOMMERCE</small>
+                <h3>电商视觉 · 案例列表</h3>
+            </div>
+            <button class="case-list-close" id="ecomCaseListClose">×</button>
+        </div>
+        <div class="case-list-content">
+            <div class="case-grid">
+                <div class="case-card" data-case="0">
+                    <div class="case-card-img"><img src="C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/2ad280b9-8772-4e32-bd14-7b56a30b175a-3.jpeg" alt=""></div>
+                </div>
+                <div class="case-card" data-case="1">
+                    <div class="case-card-img"><img src="C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/cbabf0a6-7bf5-4522-a592-6b3cd19f36ac-__.jpg" alt=""></div>
+                </div>
+                <div class="case-card" data-case="2">
+                    <div class="case-card-img"><img src="C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/144f4edb-5ebb-4b1b-9b8e-be0cfb45aa66-5.jpeg" alt=""></div>
+                </div>
+                <div class="case-card" data-case="3">
+                    <div class="case-card-img"><img src="C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/4b9db6be-f2ad-4ad3-b3d9-1216deea8dc0-__.jpg" alt=""></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 02电商案例详情页 -->
+    <div class="case-detail-modal" id="ecomCaseDetailModal">
+        <div class="case-detail-header">
+            <div class="case-detail-back" id="ecomCaseDetailBack">← 返回列表</div>
+            <button class="case-detail-close" id="ecomCaseDetailClose">×</button>
+        </div>
+        <div class="case-detail-content">
+            <div class="case-detail-hero">
+                <img id="ecomCaseDetailCover" src="" alt="">
+            </div>
+            <div class="case-detail-gallery" id="ecomCaseDetailGallery"></div>
+        </div>
+    </div>
+
+    <!-- 03 3D渲染 -->
+    <section id="render" style="max-width:1400px;margin:80px auto 100px;padding:0 6vw;display:grid;grid-template-columns:0.8fr 2fr;gap:50px;align-items:center;">
+        <div style="transition:all 0.8s ease;">
+            <p style="font-size:14px;color:#555;margin-bottom:20px;display:flex;align-items:center;gap:12px;">03<span style="width:40px;height:1px;background:#444;"></span></p>
+            <p style="font-size:15px;color:#555;letter-spacing:3px;margin-bottom:8px;">3D RENDER</p>
+            <h2 style="font-size:48px;font-weight:700;color:#fff;margin-bottom:36px;line-height:1.2;">产品建模<br>& 精修</h2>
+            <ul style="list-style:none;margin-bottom:36px;">
+                <li style="font-size:16px;color:#999;padding:12px 0 12px 20px;position:relative;letter-spacing:1px;"><span style="position:absolute;left:0;top:50%;width:6px;height:6px;background:#4facfe;border-radius:50%;transform:translateY(-50%);"></span>产品建模-精修</li>
+            </ul>
+            <a href="#" id="renderCaseBtn" class="brand-btn">查看更多</a>
+        </div>
+        <div style="position:relative;height:420px;transition:all 0.8s ease 0.2s;">
+            <div id="renderCarousel" style="position:relative;width:100%;height:100%;perspective:1200px;">
+                <div style="position:absolute;top:0;left:0;width:85%;height:100%;border-radius:16px;overflow:hidden;box-shadow:0 25px 80px rgba(0,0,0,0.6);background:#1a1a1a;opacity:1;transform:translateX(0) scale(1) rotateY(0deg);transition:all 0.8s cubic-bezier(0.25,0.46,0.45,0.94);z-index:3;">
+                    <img src="C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/ffd3c092-1489-4d55-9793-bf744dad5cbc-T2__.70.jpg" alt="" style="width:100%;height:100%;object-fit:cover;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 03 产品建模&精修案例列表页 -->
+    <div class="case-list-modal" id="renderCaseListModal">
+        <div class="case-list-header">
+            <div class="case-list-back" id="renderCaseListBack">← 返回</div>
+            <div class="case-list-title">
+                <small>PRODUCT</small>
+                <h3>产品建模&精修 · 案例列表</h3>
+            </div>
+            <button class="case-list-close" id="renderCaseListClose">×</button>
+        </div>
+        <div class="case-list-content">
+            <div class="case-grid">
+                <div class="case-card" data-case="0">
+                    <div class="case-card-img"><img src="C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/6bf51227-bba3-4564-9c98-517939c6c2b8-___.jpeg" alt=""></div>
+                </div>
+                <div class="case-card" data-case="1">
+                    <div class="case-card-img"><img src="C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/e7a0b77e-c7ae-424d-9bea-b7164bd7c40d-03.jpeg" alt=""></div>
+                </div>
+                <div class="case-card" data-case="2">
+                    <div class="case-card-img"><img src="C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/dbf5ad26-945c-47c4-b60b-2d2a78ebbc1c-01.jpeg" alt=""></div>
+                </div>
+                <div class="case-card" data-case="3">
+                    <div class="case-card-img"><img src="C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/04d9ff80-8ed8-435f-aa09-c0243880da9e-T2__.70.jpg" alt=""></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 03 产品建模&精修案例详情页 -->
+    <div class="case-detail-modal" id="renderCaseDetailModal">
+        <div class="case-detail-header">
+            <div class="case-detail-back" id="renderCaseDetailBack">← 返回列表</div>
+            <button class="case-detail-close" id="renderCaseDetailClose">×</button>
+        </div>
+        <div class="case-detail-content">
+            <div class="case-detail-hero">
+                <img id="renderCaseDetailCover" src="" alt="">
+            </div>
+            <div class="case-detail-gallery" id="renderCaseDetailGallery"></div>
+        </div>
+    </div>
+
+    <!-- 04 AIGC创意 -->
+    <section id="aigc" style="max-width:1400px;margin:80px auto 100px;padding:0 6vw;display:grid;grid-template-columns:2fr 0.8fr;gap:50px;align-items:center;">
+        <div style="position:relative;height:420px;transition:all 0.8s ease 0.2s;order:1;">
+            <div id="aigcCarousel" style="position:relative;width:100%;height:100%;perspective:1200px;">
+                <div style="position:absolute;top:0;left:0;width:85%;height:100%;border-radius:16px;overflow:hidden;box-shadow:0 25px 80px rgba(0,0,0,0.6);background:#1a1a1a;opacity:1;transform:translateX(0) scale(1) rotateY(0deg);transition:all 0.8s cubic-bezier(0.25,0.46,0.45,0.94);z-index:3;">
+                    <video src="C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/f19996ea-593b-401d-b2cd-b7fa0c221d9a-__________2___1_.mp4" style="width:100%;height:100%;object-fit:cover;" autoplay loop muted></video>
+                </div>
+                <div style="position:absolute;top:0;left:0;width:85%;height:100%;border-radius:16px;overflow:hidden;box-shadow:0 25px 80px rgba(0,0,0,0.6);background:#1a1a1a;opacity:0;transform:translateX(80px) scale(0.85) rotateY(-15deg);transition:all 0.8s cubic-bezier(0.25,0.46,0.45,0.94);z-index:2;">
+                    <video src="C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/f99935c6-9c1c-4ca2-8910-a9ad0951e31a-__________4_.mp4" style="width:100%;height:100%;object-fit:cover;" autoplay loop muted></video>
+                </div>
+            </div>
+            <div style="position:absolute;bottom:0;left:0;display:flex;align-items:center;gap:16px;z-index:10;">
+                <button class="aigc-prev" style="width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,0.15);background:transparent;color:#fff;font-size:20px;cursor:pointer;transition:all 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">‹</button>
+                <button class="aigc-next" style="width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,0.15);background:transparent;color:#fff;font-size:20px;cursor:pointer;transition:all 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">›</button>
+                <div style="display:flex;gap:8px;margin-left:8px;">
+                    <span class="aigc-dot" data-index="0" style="width:8px;height:8px;border-radius:50%;background:#4facfe;cursor:pointer;"></span>
+                    <span class="aigc-dot" data-index="1" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3);cursor:pointer;"></span>
+                </div>
+            </div>
+        </div>
+        <div style="transition:all 0.8s ease;order:2;">
+            <p style="font-size:14px;color:#555;margin-bottom:20px;display:flex;align-items:center;gap:12px;">04<span style="width:40px;height:1px;background:#444;"></span></p>
+            <p style="font-size:15px;color:#555;letter-spacing:3px;margin-bottom:8px;">AIGC</p>
+            <h2 style="font-size:48px;font-weight:700;color:#fff;margin-bottom:36px;line-height:1.2;">APP交互页面设计</h2>
+            <ul style="list-style:none;margin-bottom:36px;">
+                <li style="font-size:16px;color:#999;padding:12px 0 12px 20px;position:relative;letter-spacing:1px;"><span style="position:absolute;left:0;top:50%;width:6px;height:6px;background:#4facfe;border-radius:50%;transform:translateY(-50%);"></span>APP页面展示</li>
+            </ul>
+            <a href="#" id="aigcCaseBtn" class="brand-btn">查看更多</a>
+        </div>
+    </section>
+
+    <!-- 04 APP交互页面设计案例列表页 -->
+    <div class="case-list-modal" id="aigcCaseListModal">
+        <div class="case-list-header">
+            <div class="case-list-back" id="aigcCaseListBack">← 返回</div>
+            <div class="case-list-title">
+                <small>APP</small>
+                <h3>APP交互页面设计 · 案例列表</h3>
+            </div>
+            <button class="case-list-close" id="aigcCaseListClose">×</button>
+        </div>
+        <div class="case-list-content">
+            <div class="case-grid">
+                <div class="case-card" data-case="0">
+                    <div class="case-card-img"><img src="C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/106729b3-be0b-487f-ac07-27dac3564fc5-_____06.jpeg" alt=""></div>
+                </div>
+                <div class="case-card" data-case="1">
+                    <div class="case-card-img"><img src="C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/662c744a-4d18-4d8b-a34a-f80d1f2c5093-SDT__.jpg" alt=""></div>
+                </div>
+                <div class="case-card" data-case="2">
+                    <div class="case-card-img"><img src="C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/77581db3-4728-4398-842d-38f85f942374-_____10.jpeg" alt=""></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 04 APP交互页面设计案例详情页 -->
+    <div class="case-detail-modal" id="aigcCaseDetailModal">
+        <div class="case-detail-header">
+            <div class="case-detail-back" id="aigcCaseDetailBack">← 返回列表</div>
+            <button class="case-detail-close" id="aigcCaseDetailClose">×</button>
+        </div>
+        <div class="case-detail-content">
+            <div class="case-detail-hero">
+                <img id="aigcCaseDetailCover" src="" alt="">
+            </div>
+            <div class="case-detail-gallery" id="aigcCaseDetailGallery"></div>
+        </div>
+    </div>
+
+    <!-- 关于我 -->
+    <section class="about-section" id="about">
+        <div class="about-inner">
+            <div class="about-photo">
+                <img src="头像2.jpg" alt="黄德生">
+            </div>
+            <div class="about-content">
+                <div class="about-block">
+                    <h3 class="about-block-title">个人简介 <span>SUMMARY</span></h3>
+                    <p>9年视觉设计与品牌项目经验，具备APP及小程序，网页项目上线流程、担任过国内电商运营、跨境电商视觉设计、活动策划及初创业务背景。曾负责团队协作、创意统筹与项目落地，擅长品牌视觉、电商设计、展会物料、产品拍摄及基础视频剪辑。具备"视觉设计 + AI应用 + 项目统筹 + 商业落地"的复合型能力。</p>
+                </div>
+                <div class="about-block">
+                    <h3 class="about-block-title">教育经历 <span>EDUCATION</span></h3>
+                    <p class="edu-text">广东南方职业学院  | 艺术设计</p>
+                </div>
+                <div class="about-block">
+                    <h3 class="about-block-title">核心能力 <span>CORE COMPETENCIES</span></h3>
+                    <div class="skill-item">
+                        <h5>创意视觉指导与品牌全案</h5>
+                        <p>擅长品牌0-1系统化搭建，主导过多场大型活动视觉开发，熟悉线上电商到线下物料的全链路品控。</p>
+                    </div>
+                    <div class="skill-item">
+                        <h5>AI 生产流程建设</h5>
+                        <p>能熟练运用 AI工具高效生成日常所需图片。</p>
+                    </div>
+                    <div class="skill-item">
+                        <h5>产品拍摄与后期处理</h5>
+                        <p>能独立完成产品拍摄，剪辑与后期包装，为平台与社媒内容提供高效转化的创意素材。</p>
+                    </div>
+                    <div class="skill-item">
+                        <h5>项目统筹与跨部门协作</h5>
+                        <p>具备项目经理角色思维，能高效拆解需求，把控内外资源，驱动开发与业务端达成商业目标。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系方式 -->
+    <section class="contact-section" id="contact">
+        <div class="contact-inner">
+            <div class="contact-header">
+                <h2>期待联系</h2>
+                <p>"千里马常有，而伯乐不常有"</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <label>PHONE</label>
+                    <p>+86 13534015074</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <label>EMAIL</label>
+                    <p>zxc255@qq.com</p>
+                </div>
+                <div class="contact-item">
+                    <img src="二维码.jpg" alt="微信二维码" class="qr-code">
+                    <label>WECHAT</label>
+                    <p>扫码添加微信</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- 页脚 -->
+    <footer>
+        <p>©2026 黄德生 视觉设计师作品集</p>
+    </footer>
+
+    <!-- 回到顶部 -->
+    <button class="back-top" id="backTop">↑</button>
+
+    <script>
+        // ========== 全局星空背景 ==========
+        const globalStarfield = document.getElementById('globalStarfield');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.className = 'global-star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            star.style.animationDelay = Math.random() * 5 + 's';
+            const size = Math.random() * 2 + 1;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            globalStarfield.appendChild(star);
+        }
+
+        // 进度条
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = (scrollTop / scrollHeight) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        });
+
+        // 导航栏效果
+        const header = document.getElementById('header');
+        const backTop = document.getElementById('backTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+                backTop.classList.add('show');
+            } else {
+                header.classList.remove('scrolled');
+                backTop.classList.remove('show');
+            }
+        });
+
+        // 回到顶部
+        backTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // 导航链接点击 - 确保平滑滚动到对应区域
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // 导航高亮
+        const sections = document.querySelectorAll('.section, .hero, .brand-section');
+        const navLinks = document.querySelectorAll('nav a');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // 语言切换
+        const langLinks = document.querySelectorAll('.nav-lang a');
+        const i18n = {
+            '简': {
+                navHome: '首页', navWork: '作品', navAbout: '简介', navContact: '联系',
+                download: '离线单文版本',
+                heroSubtitle: '喜欢异宠，拍摄的复合型人员',
+                heroTitle: '你好，我是黄德生',
+                heroDesc: '"设计是\'美学装饰\'，更是\'认知引导\'的商业工具',
+                brandTitle: '品牌视觉', brandEN: 'BRAND',
+                brandList: ['VI 系统设计', '活动主视觉', '展会物料'], brandMore: '查看更多',
+                ecomTitle: 'ECOMMERCE 电商与包装', ecomSmall: '产品包装 / 社媒内容 / 详情页设计',
+                ecom1Title: 'MasTi 高温蒸煮宠物鸡胸肉', ecom1Desc: '犬猫通用零食，人食用级原切鸡胸；0色素0诱食0防腐；包装、电商详情、种草视觉', ecom1Tag: '宠物食品',
+                ecom2Title: 'geeni SCOPE 2HD 智能WiFi摄像头', ecom2Desc: '跨境电商数码产品，产品包装、亚马逊主图、海外社媒宣传素材', ecom2Tag: '跨境电商',
+                ecom3Title: 'NOCTIA 夜间修护熬夜面霜', ecom3Desc: '干皮/混干/熟龄肌修护晚霜；产品包装、小红书种草图、电商详情页视觉', ecom3Tag: '美妆护肤',
+                ecom4Title: '曼谷一日逛吃文旅宣传长图', ecom4Desc: '暹罗商圈+夜市旅行路线、泰式美食攻略；闺蜜出游社媒海报、旅游宣传物料', ecom4Tag: '旅游宣传',
+                renderTitle: '产品建模 & 精修', renderSmall: '三维建模 / 光影渲染 / 商用效果图',
+                render1Title: '写实产品3D渲染', render1Desc: '数码、宠物食品、美妆三维建模、光影渲染，商用高清电商效果图输出', render1Tag: '产品渲染',
+                render2Title: '品牌空间场景渲染', render2Desc: '门店、展会展台、产品展示空间搭建，线下落地参考效果图', render2Tag: '空间渲染',
+                renderCaseListTitle: '产品建模&精修 · 案例列表', renderCaseListEN: 'PRODUCT',
+                renderList: ['产品建模-精修'], renderMore: '查看更多',
+                aigcTitle: 'APP交互页面设计', aigcSmall: 'APP页面展示',
+                aigc1Title: '商业AI插画&概念海报', aigc1Desc: 'Midjourney/Stable Diffusion商业商单，潮流、国风、活动主视觉批量生成', aigc1Tag: 'AI出图',
+                aigc2Title: 'ComfyUI自动化AI工作流搭建', aigc2Desc: '批量出图流程、AI短视频素材自动化、AI设计生产工作流优化', aigc2Tag: '工作流',
+                aigcCaseListTitle: 'APP交互页面设计 · 案例列表', aigcCaseListEN: 'APP',
+                aigcList: ['APP页面展示'], aigcMore: '查看更多',
+                aboutSummary: '个人简介', aboutSummaryEN: 'SUMMARY',
+                aboutText: '9年视觉设计与品牌项目经验，具备APP及小程序，网页项目上线流程、担任过国内电商运营、跨境电商视觉设计、活动策划及初创业务背景。曾负责团队协作、创意统筹与项目落地，擅长品牌视觉、电商内容、展会物料、产品拍摄及基础视频剪辑。具备"视觉设计 + AI应用 + 项目统筹 + 商业落地"的复合型能力。',
+                aboutEdu: '教育经历', aboutEduEN: 'EDUCATION', aboutEduText: '广东南方职业学院  | 艺术设计',
+                aboutCore: '核心能力', aboutCoreEN: 'CORE COMPETENCIES',
+                skill1Title: '创意视觉指导与品牌全案', skill1Desc: '擅长品牌0-1系统化搭建，主导过多场大型活动视觉开发，熟悉线上电商到线下物料的全链路品控。',
+                skill2Title: 'AI 生产流程建设', skill2Desc: '能熟练运用 AI工具高效生成日常所需图片。',
+                skill3Title: '产品拍摄与后期处理', skill3Desc: '能独立完成产品拍摄，剪辑与后期包装，为平台与社媒内容提供高效转化的创意素材。',
+                skill4Title: '项目统筹与跨部门协作', skill4Desc: '具备项目经理角色思维，能高效拆解需求，把控内外资源，驱动开发与业务端达成商业目标。',
+                contactTitle: '期待联系', contactQuote: '"千里马常有，而伯乐不常有"',
+                contactWechat: '扫码添加微信',
+                footer: '©2026 黄德生 视觉设计师作品集',
+                modalBack: '← 返回'
+            },
+            '繁': {
+                navHome: '首頁', navWork: '作品', navAbout: '簡介', navContact: '聯繫',
+                download: '離線單文版本',
+                heroSubtitle: '喜歡異寵，拍攝的複合型人員',
+                heroTitle: '你好，我是黃德生',
+                heroDesc: '"設計是\'美學裝飾\'，更是\'認知引導\'的商業工具',
+                brandTitle: '品牌視覺', brandEN: 'BRAND',
+                brandList: ['VI 系統設計', '活動主視覺', '展會物料'], brandMore: '查看更多',
+                ecomTitle: 'ECOMMERCE 電商與包裝', ecomSmall: '產品包裝 / 社媒內容 / 詳情頁設計',
+                ecom1Title: 'MasTi 高溫蒸煮寵物雞胸肉', ecom1Desc: '犬貓通用零食，人食用級原切雞胸；0色素0誘食0防腐；包裝、電商詳情、種草視覺', ecom1Tag: '寵物食品',
+                ecom2Title: 'geeni SCOPE 2HD 智能WiFi攝像頭', ecom2Desc: '跨境電商數碼產品，產品包裝、亞馬遜主圖、海外社媒宣傳素材', ecom2Tag: '跨境電商',
+                ecom3Title: 'NOCTIA 夜間修護熬夜面霜', ecom3Desc: '乾皮/混乾/熟齡肌修護晚霜；產品包裝、小紅書種草圖、電商詳情頁視覺', ecom3Tag: '美妝護膚',
+                ecom4Title: '曼谷一日逛吃文旅宣傳長圖', ecom4Desc: '暹羅商圈+夜市旅行路線、泰式美食攻略；閨蜜出遊社媒海報、旅遊宣傳物料', ecom4Tag: '旅遊宣傳',
+                renderTitle: '產品建模 & 精修', renderSmall: '三維建模 / 光影渲染 / 商用效果圖',
+                render1Title: '寫實產品3D渲染', render1Desc: '數碼、寵物食品、美妝三維建模、光影渲染，商用高清電商效果圖輸出', render1Tag: '產品渲染',
+                render2Title: '品牌空間場景渲染', render2Desc: '門店、展會展台、產品展示空間搭建，線下落地參考效果圖', render2Tag: '空間渲染',
+                renderCaseListTitle: '产品建模&精修 · 案例列表', renderCaseListEN: 'PRODUCT',
+                renderList: ['產品建模-精修'], renderMore: '查看更多',
+                aigcTitle: 'APP交互頁面設計', aigcSmall: 'APP頁面展示',
+                aigc1Title: '商業AI插畫&概念海報', aigc1Desc: 'Midjourney/Stable Diffusion商業商單，潮流、國風、活動主視覺批量生成', aigc1Tag: 'AI出圖',
+                aigc2Title: 'ComfyUI自動化AI工作流搭建', aigc2Desc: '批量出圖流程、AI短視頻素材自動化、AI設計生產工作流優化', aigc2Tag: '工作流',
+                aigcCaseListTitle: 'APP交互页面设计 · 案例列表', aigcCaseListEN: 'APP',
+                aigcList: ['APP頁面展示'], aigcMore: '查看更多',
+                aboutSummary: '個人簡介', aboutSummaryEN: 'SUMMARY',
+                aboutText: '9年視覺設計與品牌項目經驗，具備APP及小程序，網頁項目上線流程、擔任過國內電商運營、跨境電商視覺設計、活動策劃及初創業務背景。曾負責團隊協作、創意統籌與項目落地，擅長品牌視覺、電商內容、展會物料、產品拍攝及基礎視頻剪輯。具備"視覺設計 + AI應用 + 項目統籌 + 商業落地"的複合型能力。',
+                aboutEdu: '教育經歷', aboutEduEN: 'EDUCATION', aboutEduText: '廣東南方職業學院  | 藝術設計',
+                aboutCore: '核心能力', aboutCoreEN: 'CORE COMPETENCIES',
+                skill1Title: '創意視覺指導與品牌全案', skill1Desc: '擅長品牌0-1系統化搭建，主導過多場大型活動視覺開發，熟悉線上電商到線下物料的全鏈路品控。',
+                skill2Title: 'AI 生產流程建設', skill2Desc: '能熟練運用 AI工具高效生成日常所需圖片。',
+                skill3Title: '產品拍攝與後期處理', skill3Desc: '能獨立完成產品拍攝，剪輯與後期包裝，為平台與社媒內容提供高效轉化的創意素材。',
+                skill4Title: '項目統籌與跨部門協作', skill4Desc: '具備項目經理角色思維，能高效拆解需求，把控內外資源，驅動開發與業務端達成商業目標。',
+                contactTitle: '期待聯繫', contactQuote: '"千里馬常有，而伯樂不常有"',
+                contactWechat: '掃碼添加微信',
+                footer: '©2026 黃德生 視覺設計師作品集',
+                modalBack: '← 返回', modalTitle: '品牌視覺'
+            },
+            'EN': {
+                navHome: 'Home', navWork: 'Works', navAbout: 'About', navContact: 'Contact',
+                download: 'Offline Version',
+                heroSubtitle: 'Exotic Pet Lover · Multidisciplinary Creator',
+                heroTitle: "Hello, I'm Leo Huang",
+                heroDesc: '"Design is not just aesthetic decoration, but a cognitive-driven business tool',
+                brandTitle: 'Brand Visual', brandEN: 'BRAND',
+                brandList: ['VI System Design', 'Event Key Visual', 'Exhibition Materials'], brandMore: 'View More',
+                ecomTitle: 'ECOMMERCE & Packaging', ecomSmall: 'Product Packaging / Social Media / Detail Pages',
+                ecom1Title: 'MasTi Steamed Pet Chicken Breast', ecom1Desc: 'Universal pet snacks, human-grade chicken breast; zero colorants, zero attractants, zero preservatives', ecom1Tag: 'Pet Food',
+                ecom2Title: 'geeni SCOPE 2HD Smart WiFi Camera', ecom2Desc: 'Cross-border e-commerce digital product, packaging, Amazon main image, overseas social media materials', ecom2Tag: 'Cross-border',
+                ecom3Title: 'NOCTIA Night Repair Cream', ecom3Desc: 'Dry/combination/mature skin night repair; product packaging, social media visuals, e-commerce detail pages', ecom3Tag: 'Skincare',
+                ecom4Title: 'Bangkok Day Trip Travel Poster', ecom4Desc: 'Siam district + night market travel route, Thai food guide; social media poster, travel promo materials', ecom4Tag: 'Travel',
+                renderTitle: 'Product Modeling & Retouching', renderSmall: '3D Modeling / Lighting / Commercial Renders',
+                render1Title: 'Photorealistic 3D Product Rendering', render1Desc: 'Digital, pet food, cosmetics 3D modeling and lighting renders for commercial e-commerce use', render1Tag: 'Product Render',
+                render2Title: 'Brand Space Scene Rendering', render2Desc: 'Store, exhibition booth, product display space design with offline reference renders', render2Tag: 'Space Render',
+                renderCaseListTitle: 'Product Modeling & Retouching · Case List', renderCaseListEN: 'PRODUCT',
+                renderList: ['Product Modeling-Retouching'], renderMore: 'View More',
+                aigcTitle: 'APP Interaction Design', aigcSmall: 'APP Page Display',
+                aigc1Title: 'Commercial AI Illustration & Posters', aigc1Desc: 'Midjourney/Stable Diffusion commercial orders, trendy, Chinese style, event key visuals batch generation', aigc1Tag: 'AI Image',
+                aigc2Title: 'ComfyUI Automated AI Workflow', aigc2Desc: 'Batch image pipeline, AI short video automation, AI design production workflow optimization', aigc2Tag: 'Workflow',
+                aigcCaseListTitle: 'APP Interaction Design · Case List', aigcCaseListEN: 'APP',
+                aigcList: ['APP Page Display'], aigcMore: 'View More',
+                aboutSummary: 'Profile', aboutSummaryEN: 'SUMMARY',
+                aboutText: '9 years of visual design and brand project experience. Proficient in APP, mini-program, and web project launch workflows. Background in domestic e-commerce, cross-border visual design, event planning, and startup operations. Skilled in brand visual, e-commerce content, exhibition materials, product photography, and video editing. A multidisciplinary professional combining visual design, AI application, project management, and commercial execution.',
+                aboutEdu: 'Education', aboutEduEN: 'EDUCATION', aboutEduText: 'Guangdong Nanfang Vocational College | Art Design',
+                aboutCore: 'Core Skills', aboutCoreEN: 'CORE COMPETENCIES',
+                skill1Title: 'Creative Visual & Brand Strategy', skill1Desc: 'Expert in brand 0-1 system development, led multiple large-scale event visual projects, familiar with full-chain quality control from online e-commerce to offline materials.',
+                skill2Title: 'AI Production Workflow', skill2Desc: 'Proficient in using AI tools to efficiently generate daily visual assets.',
+                skill3Title: 'Product Photography & Post-production', skill3Desc: 'Capable of independently handling product photography, editing, and post-production for platform and social media content.',
+                skill4Title: 'Project Management & Collaboration', skill4Desc: 'Strong project manager mindset, able to efficiently break down requirements, manage resources, and drive business goals.',
+                contactTitle: "Let's Connect", contactQuote: '"Talent is common, but those who recognize it are rare"',
+                contactWechat: 'Scan to add WeChat',
+                footer: '©2026 Leo Huang Portfolio',
+                modalBack: '← Back', modalTitle: 'Brand Visual'
+            }
+        };
+        function setLang(lang) {
+            const t = i18n[lang];
+            if (!t) return;
+            const s = (sel, val) => { const el = document.querySelector(sel); if (el) el.textContent = val; };
+            const h = (sel, val) => { const el = document.querySelector(sel); if (el) el.innerHTML = val; };
+            s('nav a[href="#hero"]', t.navHome);
+            s('nav a[href="#brand"]', t.navWork);
+            s('nav a[href="#about"]', t.navAbout);
+            s('nav a[href="#contact"]', t.navContact);
+            s('.nav-download-text', t.download);
+            s('.hero-subtitle', t.heroSubtitle);
+            s('.hero h1', t.heroTitle);
+            s('.hero-desc', t.heroDesc);
+            s('.brand-title', t.brandTitle);
+            const brandItems = document.querySelectorAll('.brand-list li');
+            t.brandList.forEach((txt, i) => { if (brandItems[i]) brandItems[i].textContent = txt; });
+            s('.brand-btn', t.brandMore);
+            s('#ecom .brand-title', t.ecomTitle);
+            h('#render .brand-title', t.renderTitle);
+            const renderItems = document.querySelectorAll('#render .brand-list li');
+            t.renderList.forEach((txt, i) => { if (renderItems[i]) renderItems[i].textContent = txt; });
+            s('#render .brand-btn', t.renderMore);
+            s('#renderCaseListModal .case-list-title small', t.renderCaseListEN);
+            s('#renderCaseListModal .case-list-title h3', t.renderCaseListTitle);
+            h('#aigc h2', t.aigcTitle);
+            const aigcItems = document.querySelectorAll('#aigc ul li');
+            t.aigcList.forEach((txt, i) => { if (aigcItems[i]) aigcItems[i].textContent = txt; });
+            s('#aigc a', t.aigcMore);
+            s('#aigcCaseListModal .case-list-title small', t.aigcCaseListEN);
+            s('#aigcCaseListModal .case-list-title h3', t.aigcCaseListTitle);
+            h('#about .about-block:nth-child(1) .about-block-title', t.aboutSummary + ' <span>' + t.aboutSummaryEN + '</span>');
+            s('#about .about-block:nth-child(1) p', t.aboutText);
+            h('#about .about-block:nth-child(2) .about-block-title', t.aboutEdu + ' <span>' + t.aboutEduEN + '</span>');
+            s('#about .about-block:nth-child(2) p', t.aboutEduText);
+            h('#about .about-block:nth-child(3) .about-block-title', t.aboutCore + ' <span>' + t.aboutCoreEN + '</span>');
+            const skills = document.querySelectorAll('#about .skill-item');
+            ['skill1', 'skill2', 'skill3', 'skill4'].forEach((key, i) => {
+                if (skills[i]) {
+                    skills[i].querySelector('h5').textContent = t[key + 'Title'];
+                    skills[i].querySelector('p').textContent = t[key + 'Desc'];
+                }
+            });
+            s('.contact-header h2', t.contactTitle);
+            s('.contact-header p', t.contactQuote);
+            s('.contact-item:nth-child(3) p', t.contactWechat);
+            s('footer p', t.footer);
+            document.title = lang === 'EN' ? 'Leo Huang | Visual·Brand·UI·Graphic' : lang === '繁' ? '黃德生 | 視覺·品牌·UI·平面·美工' : '黄德生 | 视觉·品牌·UI·平面·美工';
+        }
+        langLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                langLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                setLang(link.textContent.trim());
+            });
+        });
+
+        // ========== Hero 全特效 ==========
+        (function() {
+            const hero = document.getElementById('hero');
+            if (!hero) return;
+
+            // 光点粒子
+            const particlesBox = document.getElementById('heroParticles');
+            if (particlesBox) {
+                for (let i = 0; i < 40; i++) {
+                    const p = document.createElement('div');
+                    const size = 2 + Math.random() * 3;
+                    const colors = ['rgba(79,172,254,0.6)','rgba(168,230,207,0.5)','rgba(240,147,251,0.4)','rgba(255,255,255,0.3)'];
+                    const c = colors[Math.floor(Math.random()*colors.length)];
+                    p.style.cssText = 'position:absolute;width:'+size+'px;height:'+size+'px;border-radius:50%;background:'+c+';left:'+Math.random()*100+'%;top:'+Math.random()*100+'%;animation:hParticle '+(5+Math.random()*8)+'s ease-in-out infinite '+Math.random()*5+'s;pointer-events:none;';
+                    particlesBox.appendChild(p);
+                }
+            }
+
+            // 萤火虫
+            const firefliesBox = document.getElementById('heroFireflies');
+            if (firefliesBox) {
+                for (let i = 0; i < 15; i++) {
+                    const f = document.createElement('div');
+                    f.style.cssText = 'position:absolute;width:5px;height:5px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,150,0.8),transparent);pointer-events:none;left:'+Math.random()*100+'%;top:'+Math.random()*100+'%;animation:heroFF '+(5+Math.random()*6)+'s ease-in-out infinite '+Math.random()*5+'s,heroFFGlow '+(1.5+Math.random()*2)+'s ease-in-out infinite '+Math.random()*2+'s;';
+                    firefliesBox.appendChild(f);
+                }
+            }
+        })();
+
+        // ========== 全局光标效果 ==========
+        if (cursorGlow && cursorTrail) {
+            document.addEventListener('mousemove', (e) => {
+                cursorGlow.style.left = e.clientX + 'px';
+                cursorGlow.style.top = e.clientY + 'px';
+                cursorTrail.style.left = e.clientX + 'px';
+                cursorTrail.style.top = e.clientY + 'px';
+            });
+
+            // 光标悬停效果
+            document.querySelectorAll('a, button, .magnetic-btn, .work-card').forEach(el => {
+                el.addEventListener('mouseenter', () => cursorTrail.classList.add('hovering'));
+                el.addEventListener('mouseleave', () => cursorTrail.classList.remove('hovering'));
+            });
+        }
+
+
+
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -60px 0px'
+        };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const delay = entry.target.dataset.delay || 0;
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, parseInt(delay));
+                }
+            });
+        }, observerOptions);
+
+        // 给每个卡片设置交错延迟
+        document.querySelectorAll('.work-card').forEach((card, i) => {
+            card.dataset.delay = (i % 4) * 120;
+            observer.observe(card);
+        });
+
+        // 区块标题滚动显示
+        const sectionHeaders = document.querySelectorAll('.section-header');
+        const headerObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.2 });
+        sectionHeaders.forEach(h => {
+            h.style.opacity = '0';
+            h.style.transform = 'translateY(30px)';
+            h.style.transition = 'all 0.8s ease';
+            headerObserver.observe(h);
+        });
+
+        // 区块标题显示效果
+        document.querySelectorAll('.section-header.visible').forEach(h => {
+            h.style.opacity = '1';
+            h.style.transform = 'translateY(0)';
+        });
+        const style = document.createElement('style');
+        style.textContent = '.section-header.visible { opacity: 1 !important; transform: translateY(0) !important; }';
+        document.head.appendChild(style);
+
+        document.querySelectorAll('.brand-left, .brand-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // 品牌轮播
+        const brandSlides = document.querySelectorAll('.brand-slide');
+        const brandDots = document.querySelectorAll('.brand-dot');
+        const brandPrevBtn = document.getElementById('brandPrev');
+        const brandNextBtn = document.getElementById('brandNext');
+        let currentBrand = 0;
+        const totalBrandSlides = brandSlides.length;
+
+        function showBrandSlide(index) {
+            const prevIdx = (index - 1 + totalBrandSlides) % totalBrandSlides;
+            const nextIdx = (index + 1) % totalBrandSlides;
+
+            brandSlides.forEach((slide, i) => {
+                slide.className = 'brand-slide';
+                if (i === index) slide.classList.add('active');
+                else if (i === prevIdx) slide.classList.add('prev');
+                else slide.classList.add('next');
+            });
+
+            brandDots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+            currentBrand = index;
+        }
+
+        brandNextBtn.addEventListener('click', () => {
+            const next = (currentBrand + 1) % totalBrandSlides;
+            showBrandSlide(next);
+        });
+
+        brandPrevBtn.addEventListener('click', () => {
+            const prev = (currentBrand - 1 + totalBrandSlides) % totalBrandSlides;
+            showBrandSlide(prev);
+        });
+
+        brandDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                showBrandSlide(parseInt(dot.dataset.index));
+            });
+        });
+
+        // 自动轮播
+        setInterval(() => {
+            const next = (currentBrand + 1) % totalBrandSlides;
+            showBrandSlide(next);
+        }, 5000);
+
+        // 初始化
+        showBrandSlide(0);
+
+        // ========== 电商包装轮播 ==========
+        const ecomSlides = document.querySelectorAll('#ecom .brand-slide');
+        const ecomDots = document.querySelectorAll('.ecom-dot');
+        const ecomPrevBtn = document.querySelector('.ecom-prev');
+        const ecomNextBtn = document.querySelector('.ecom-next');
+        let currentEcom = 0;
+        const totalEcomSlides = ecomSlides.length;
+
+        function showEcomSlide(index) {
+            const prevIdx = (index - 1 + totalEcomSlides) % totalEcomSlides;
+            const nextIdx = (index + 1) % totalEcomSlides;
+
+            ecomSlides.forEach((slide, i) => {
+                slide.className = 'brand-slide';
+                if (i === index) slide.classList.add('active');
+                else if (i === prevIdx) slide.classList.add('prev');
+                else slide.classList.add('next');
+            });
+
+            ecomDots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+            currentEcom = index;
+        }
+
+        ecomNextBtn.addEventListener('click', () => {
+            const next = (currentEcom + 1) % totalEcomSlides;
+            showEcomSlide(next);
+        });
+
+        ecomPrevBtn.addEventListener('click', () => {
+            const prev = (currentEcom - 1 + totalEcomSlides) % totalEcomSlides;
+            showEcomSlide(prev);
+        });
+
+        ecomDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                showEcomSlide(parseInt(dot.dataset.index));
+            });
+        });
+
+        // 自动轮播
+        setInterval(() => {
+            const next = (currentEcom + 1) % totalEcomSlides;
+            showEcomSlide(next);
+        }, 5000);
+
+        // 初始化
+        showEcomSlide(0);
+
+        // ========== 03 3D渲染轮播 ==========
+        const renderSlides = document.querySelectorAll('#renderCarousel > div');
+        const renderDots = document.querySelectorAll('.render-dot');
+        const renderPrevBtn = document.querySelector('.render-prev');
+        const renderNextBtn = document.querySelector('.render-next');
+        let currentRender = 0;
+        const totalRenderSlides = renderSlides.length;
+
+        function showRenderSlide(index) {
+            renderSlides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.style.opacity = '1';
+                    slide.style.transform = 'translateX(0) scale(1) rotateY(0deg)';
+                    slide.style.zIndex = '3';
+                } else {
+                    slide.style.opacity = '0';
+                    slide.style.transform = 'translateX(80px) scale(0.85) rotateY(-15deg)';
+                    slide.style.zIndex = '2';
+                }
+            });
+
+            renderDots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.style.background = '#4facfe';
+                } else {
+                    dot.style.background = 'rgba(255,255,255,0.3)';
+                }
+            });
+            currentRender = index;
+        }
+
+        if (renderNextBtn) {
+            renderNextBtn.addEventListener('click', () => {
+                const next = (currentRender + 1) % totalRenderSlides;
+                showRenderSlide(next);
+            });
+        }
+
+        if (renderPrevBtn) {
+            renderPrevBtn.addEventListener('click', () => {
+                const prev = (currentRender - 1 + totalRenderSlides) % totalRenderSlides;
+                showRenderSlide(prev);
+            });
+        }
+
+        if (renderDots.length > 0) {
+            renderDots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    showRenderSlide(parseInt(dot.dataset.index));
+                });
+            });
+        }
+
+        // 自动轮播
+        setInterval(() => {
+            const next = (currentRender + 1) % totalRenderSlides;
+            showRenderSlide(next);
+        }, 5000);
+
+        // 初始化
+        showRenderSlide(0);
+
+        // ========== 案例系统 ==========
+        const brandCaseData = [
+            {
+                name: '博莎朗 品牌视觉系统',
+                tag: '品牌全案',
+                cover: 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/caabe039-42b0-4f18-9c50-f5b24241d7a2-__.jpeg',
+                desc: '博莎朗（Bosharon）是一家专注于高品质专利产品的卫生用品品牌。本次品牌视觉系统设计涵盖品牌策略定位、LOGO设计、VI系统搭建、产品包装、画册设计及展会物料等全链路品牌服务。设计以温暖的米色为主色调，搭配金色点缀，传递品牌的品质感与信赖感。',
+                service: '品牌策略 / VI系统 / 画册设计 / 包装设计 / 展会物料',
+                time: '2019年',
+                gallery: ['C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/7278b2eb-e637-45b9-9295-ccd3e71ce75a-___vi_01.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/4a03d7b3-f387-484a-a97f-317cc2cc2142-2.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/d9ad999a-4c2a-42b3-8131-98a5922fd13d-3.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/9d24a7b5-2d48-4a36-addb-ae60bc960de5-4.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/d7155d3c-0d40-4aef-b62b-62e60a2e8932-5.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/2630d957-e693-4be1-9730-90dbbce7e880-7.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/e4bd7d40-6152-4192-9a60-0687ae770dda-8.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/5c6abb9e-0625-4ff4-8e17-fe29bcdb2a3e-9.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/2338d7a8-162f-47e0-8cac-608fe79ddd60-10.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/21208812-9cef-42de-ae65-847985d84037-11.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/5b386685-f4b2-4568-b626-9d0fa5da9053-12.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/3c2ab0aa-f2b7-40b5-bddf-8665d32d9645-13.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/3a56e2a9-bb50-4235-be7b-81e5edd7b8f9-14.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/2f50d104-75bc-46e4-8570-04a90c71aa2b-15.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/39960438-3753-47e9-8ab1-b7d19eb4701e-17.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/1168c73b-bcce-4fe6-a69d-cc50fc989774-18.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/8e1fca93-cc31-4ec9-8571-cc10f62cfba2-________02.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/0743a2ef-9fd1-4578-9b4c-71a11cf6cee9-________03.jpeg']
+            },
+            {
+                name: '动感地带 品牌代言人',
+                tag: '活动主视觉',
+                cover: 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/cd54d1fc-ceb6-40e5-8572-509f0121bfb2-__________01.jpeg',
+                desc: '动感地带全新品牌代言人活动主视觉设计，以"移动千兆5G，全家智慧升级"为主题，融合国潮元素与5G科技感。设计包含主视觉KV、媒体延展、新年物料等全链路视觉输出。',
+                service: '主视觉KV / 媒体延展 / 新年物料 / 社媒素材',
+                time: '2023年',
+                gallery: ['C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/308bc9f5-e675-41f2-b6a0-be5cc4033ce3-__________02.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/9cdc922c-af86-4381-a07e-2b45d12a64fa-__________03.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/f4bce200-44fa-4f4a-9f74-4b86dbe337d6-__________04.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/0da3ed48-d560-42f1-b5fc-4c56d655c0ee-__________05.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/ac1652b8-2bbe-4325-ab6e-1110b84e8660-__________06.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/b59337b4-1492-44c5-816e-b594a04a0568-__________07.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/51b653c4-984f-46b3-a5fd-64c522bd65e9-__________08.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/31cbf466-53a8-47ff-9506-dc16e084970f-__________09.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/50418f62-0d95-42ee-a0fa-c115a6440a1d-__________10.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/8d1e78b8-d6f5-4ba4-bd05-944f6b8dc841-__________11.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/6de3d3d1-702a-497e-807d-d6c94dacc0fc-__________12.jpeg']
+            },
+            {
+                name: 'MOKA 咖啡品牌设计',
+                tag: '品牌全案',
+                cover: 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/e0f53159-a25c-48db-8c8a-17c1a452286c-download.jpeg',
+                desc: 'MOKA是一家精品咖啡品牌，品牌设计以简约手绘风格为主，通过咖啡杯、牛角包、咖啡豆等元素传递轻松愉悦的品牌调性。设计涵盖品牌LOGO、VI系统、包装设计及周边产品。',
+                service: '品牌策略 / LOGO设计 / VI系统 / 包装设计',
+                time: '2024年',
+                gallery: ['C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/b95907d5-2425-4a39-9e2e-e893843df1a5-2.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/df5ec2ba-beb8-4bd3-bfa8-cf93ae712e8f-700.824-__.jpg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/6ebff4e7-7f49-43ab-a7ff-d0bfc3f2933b-iCM004_Wire-Free-Camera_Packaging_01.jpg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/5804a83b-f8dc-478c-98a4-4f6becc59558-401330G_v5_01.jpg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/2af7a063-ff6e-4c88-b5fd-ca72d099b5f4-KJ-210_card_ol_2_23.20____01.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/081250a6-bfc7-4ab9-a18a-ac1635ba983f-Y6---HHA492101---___01.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/da3d6cd9-2567-4549-88a3-07cc4ff7ddc8-___Y1___-_01.jpg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/198cf44c-1342-4eb1-9ce1-8fa2d90b37f8-X1-____-SECAM_1_.png']
+            },
+            {
+                name: '医疗集团 视觉识别手册',
+                tag: '品牌全案',
+                cover: 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/be120da4-d8af-44c9-a162-8556df9f4d86-700.jpeg',
+                desc: '医疗集团品牌视觉识别系统设计，建立标准化的品牌视觉规范，包含LOGO使用规范、色彩系统、字体规范、应用规范等，确保品牌形象的统一性和专业性。',
+                service: 'VI系统 / 品牌规范手册 / 应用设计',
+                time: '2023年',
+                gallery: ['C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/b3f98073-68ec-42d4-9ad3-772c8eed8ebc-700.824_____01.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/5056ae21-cd8c-4f0f-b923-09f60a4d2eb0-_V3__2024_No_brand_-_Smart_IP_Camera_-_HHA492302_-_Manual_01.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/ad46d583-d6e7-47c3-8403-b6a6764192f9-4G________100X142mm_01.jpg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/afa2e5c6-166e-44c7-b3ce-245d86927a16-MMV____76-11____01.jpg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/acdf263d-bc30-4169-b12c-de7603c48c6a-KJ-198manual_ol_01.jpg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/43b09a51-3e37-4cea-9809-3954973a2e49-KJ-210manual_ol_01.jpeg']
+            },
+            {
+                name: 'MOSS COFFEE 品牌设计',
+                tag: '品牌全案',
+                cover: 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/ae9b2870-b1f5-4c5d-b511-aac86a28a290-Y20___2__1__01.jpeg',
+                desc: 'MOSS COFFEE是一家城市精品咖啡馆，品牌设计以清新自然为理念，蓝色LOGO搭配简约空间设计，打造城市中的宁静绿洲。设计涵盖品牌策略、VI系统、空间设计及物料设计。',
+                service: '品牌策略 / VI系统 / 空间设计 / 物料设计',
+                time: '2024年',
+                gallery: ['C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/63f3d579-0bec-4408-938a-18c3eae2f7d7-MMV________01.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/8f8913dd-8b9f-4b2a-ad1c-a3f90bfdebcd-______100X_150_01.jpeg']
+            },
+            {
+                name: '新年 国潮插画设计',
+                tag: '品牌全案',
+                cover: 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/ad7658c5-d838-44df-a15e-c4edf349d3df-aigo________V1.2_1__82.jpeg',
+                desc: '新年国潮主题插画设计，融合传统生肖元素与现代潮流风格，为品牌打造具有节日氛围的视觉内容。设计包含插画创作、海报设计、社媒物料等全套输出。',
+                service: '插画设计 / 海报设计 / 社媒物料',
+                time: '2024年',
+                gallery: ['C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/07cf915d-30b9-4e29-b1d3-353b6bf18869-aigo________V1.2_1__81.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/fb48ca67-f56b-410a-a587-646ee1293868-aigo________V1.2_1__78.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/b7268f5f-7900-4cd3-a349-19428aeaf51b-aigo________V1.2_1__49.jpeg']
+            },
+            {
+                name: '坪上青柯 茶品牌LOGO',
+                tag: 'LOGO设计',
+                cover: 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/699dbf6f-2f32-4c36-9dd6-7c2dcb12a1d7-_____24.jpeg',
+                desc: '坪上青柯茶叶有限公司LOGO设计，以山、茶叶、云为设计元素，运用绿色渐变色彩搭配，传递健康、自然、环保的品牌理念。采用简约扁平风格，让用户一眼识别茶叶品牌属性。',
+                service: 'LOGO设计 / 品牌视觉 / 色彩规范',
+                time: '2021年',
+                gallery: []
+            }
+        ];
+
+        const ecomCaseData = [
+            {
+                name: 'PRUVEEO 行车记录仪',
+                tag: '跨境电商',
+                cover: 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/2ad280b9-8772-4e32-bd14-7b56a30b175a-3.jpeg',
+                desc: 'PRUVEEO行车记录仪产品详情页设计，包含产品主图、功能展示、卖点说明、使用场景等全套电商视觉素材。',
+                service: '产品详情页 / 主图设计 / 功能展示',
+                time: '2024年',
+                gallery: ['C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/9cb0fbc9-b90e-436c-a12e-dac0722b57f3-0595530E-D514-4e50-A443-FEA0A875AFE9.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/6c7ec5a8-6bc0-440c-b1e4-ccc753785288-B668519D-8968-40c0-8167-76B1CFF107A4.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/97cc14cb-192b-45cf-b8bf-862ee1483c71-BC8AD708-CB82-4521-8BB9-C3113C9170E7.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/bed91aed-3752-4038-a094-485bb40b0621-63B08BE9-E519-47dd-A156-6136DAB04CC7.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/75a4eeae-16cd-4673-83df-f0be17dd012b-__2.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/98ea196c-e96b-427a-9b03-78985873eaf2-1298381f5cd7f2df1520e7f3ed4970ab.jpeg']
+            },
+            {
+                name: '无尘境 节气海报',
+                tag: '社媒内容',
+                cover: 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/cbabf0a6-7bf5-4522-a592-6b3cd19f36ac-__.jpg',
+                desc: '无尘境茶品牌节气海报设计，以"白露"为主题，运用清新淡雅的插画风格，结合东方茶文化意境，传递品牌"让东方好茶成为生活日常"的理念。',
+                service: '节气海报 / 社媒视觉 / 品牌内容',
+                time: '2024年',
+                gallery: []
+            },
+            {
+                name: 'HW7 MAX 智能手表',
+                tag: '跨境电商',
+                cover: 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/144f4edb-5ebb-4b1b-9b8e-be0cfb45aa66-5.jpeg',
+                desc: 'HW7 MAX智能手表产品详情页设计，包含产品主图、功能展示、卖点说明、使用场景等全套电商视觉素材。',
+                service: '产品详情页 / 主图设计 / 功能展示',
+                time: '2024年',
+                gallery: ['C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/2a8693ed-9d8b-4e2a-9a9a-a16728b49658-____.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/e0e2eb4d-1b61-42a7-a6c4-6235a7c442e9-1.jpeg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/0dbacc54-a7f6-48fe-b922-7bf17007da39-__.jpeg']
+            },
+            {
+                name: '医疗集团 视觉识别手册',
+                tag: '品牌全案',
+                cover: 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/4b9db6be-f2ad-4ad3-b3d9-1216deea8dc0-__.jpg',
+                desc: '医疗集团品牌视觉识别系统设计，建立标准化的品牌视觉规范，包含LOGO使用规范、色彩系统、字体规范、应用规范等，确保品牌形象的统一性和专业性。',
+                service: 'VI系统 / 品牌规范手册 / 应用设计',
+                time: '2023年',
+                gallery: ['C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/95bd9667-5921-4342-a9e1-f1125b2af41a-__1.jpg', 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/4b6d02b4-8e12-40ee-aef4-36dd8a31f727-__2.jpg']
+            }
+        ];
+
+        const caseListModal = document.getElementById('caseListModal');
+        const caseListBack = document.getElementById('caseListBack');
+        const caseListClose = document.getElementById('caseListClose');
+        const brandCaseBtn = document.getElementById('brandCaseBtn');
+
+        brandCaseBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            caseListModal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        });
+
+        const ecomCaseBtn = document.getElementById('ecomCaseBtn');
+        if (ecomCaseBtn) {
+            ecomCaseBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                ecomCaseListModal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            });
+        }
+
+        function closeCaseList() {
+            caseListModal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        caseListBack.addEventListener('click', closeCaseList);
+        caseListClose.addEventListener('click', closeCaseList);
+
+        // 02电商案例列表
+        const ecomCaseListModal = document.getElementById('ecomCaseListModal');
+        const ecomCaseListBack = document.getElementById('ecomCaseListBack');
+        const ecomCaseListClose = document.getElementById('ecomCaseListClose');
+
+        function closeEcomCaseList() {
+            ecomCaseListModal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        ecomCaseListBack.addEventListener('click', closeEcomCaseList);
+        ecomCaseListClose.addEventListener('click', closeEcomCaseList);
+
+        const caseDetailModal = document.getElementById('caseDetailModal');
+        const caseDetailBack = document.getElementById('caseDetailBack');
+        const caseDetailClose = document.getElementById('caseDetailClose');
+
+        // 01品牌案例卡片点击
+        document.querySelectorAll('#caseListModal .case-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const index = parseInt(card.dataset.case);
+                const data = brandCaseData[index];
+                document.getElementById('caseDetailCover').src = data.cover;
+                const gallery = document.getElementById('caseDetailGallery');
+                gallery.innerHTML = '';
+                data.gallery.forEach(src => {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    gallery.appendChild(img);
+                });
+                caseDetailModal.classList.add('open');
+                caseDetailModal.scrollTop = 0;
+            });
+        });
+        function closeCaseDetail() {
+            caseDetailModal.classList.remove('open');
+        }
+        caseDetailBack.addEventListener('click', () => {
+            closeCaseDetail();
+            caseListModal.classList.add('open');
+        });
+        caseDetailClose.addEventListener('click', closeCaseDetail);
+
+        // 02电商案例详情
+        const ecomCaseDetailModal = document.getElementById('ecomCaseDetailModal');
+        const ecomCaseDetailBack = document.getElementById('ecomCaseDetailBack');
+        const ecomCaseDetailClose = document.getElementById('ecomCaseDetailClose');
+
+        document.querySelectorAll('#ecomCaseListModal .case-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const index = parseInt(card.dataset.case);
+                const data = ecomCaseData[index];
+                document.getElementById('ecomCaseDetailCover').src = data.cover;
+                const gallery = document.getElementById('ecomCaseDetailGallery');
+                gallery.innerHTML = '';
+                data.gallery.forEach(src => {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    gallery.appendChild(img);
+                });
+                ecomCaseDetailModal.classList.add('open');
+                ecomCaseDetailModal.scrollTop = 0;
+            });
+        });
+        function closeEcomCaseDetail() {
+            ecomCaseDetailModal.classList.remove('open');
+        }
+        ecomCaseDetailBack.addEventListener('click', () => {
+            closeEcomCaseDetail();
+            ecomCaseListModal.classList.add('open');
+        });
+        ecomCaseDetailClose.addEventListener('click', closeEcomCaseDetail);
+
+        // 03 产品建模&精修案例系统
+        const renderCaseData = [
+            {
+                name: '行车记录仪建模',
+                tag: '产品建模-精修',
+                cover: 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/6bf51227-bba3-4564-9c98-517939c6c2b8-___.jpeg',
+                desc: '行车记录仪产品三维建模与精修，多角度展示产品外观结构与细节，还原黑色哑光材质质感，适配电商详情页与营销物料',
+                service: '3D建模 / 产品渲染 / 多角度展示',
+                time: '2024年',
+                gallery: [
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/9d8651ad-916f-4c6e-b7ab-7546659a9452-_.png',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/b7e4e0ff-5121-48a8-88cb-9ca412bdd1d7-__1.png',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/7d2a6dcf-c486-408e-82ff-ac79a1a1ab43-__2.png',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/9760649a-8aa4-4fb6-9ee6-94cf32578287-__3.png',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/19ccc740-f999-4c4e-ad51-832dae23efd0-___1.png',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/6555732a-0ec7-4b34-b781-99df0302fea9-___2.png',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/e44af2df-897c-4ff9-a4ea-bbf5aa81f3d8-_.png',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/816d7728-6e88-4788-85c4-954d7c2f53d6-_.png'
+                ]
+            },
+            {
+                name: '智能安防摄像头建模',
+                tag: '产品建模-精修',
+                cover: 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/e7a0b77e-c7ae-424d-9bea-b7164bd7c40d-03.jpeg',
+                desc: '智能安防摄像头产品三维建模，多角度展示产品外观结构与细节，还原白色哑光材质质感，适配电商详情页与营销物料',
+                service: '3D建模 / 产品渲染 / 多角度展示',
+                time: '2024年',
+                gallery: [
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/91ce1d78-6073-4603-b2d0-6a711d022d89-62-1.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/274b20c3-fa06-4d50-889f-b76618ea520d-62-2.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/0e696a8e-6bbf-48e4-b42d-e99f1035b05b-62-3.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/b26c7e4b-ea16-4826-ad86-b51a9d9687eb-62-4.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/b0f96e8f-1b62-436b-bbfc-297773eafbb4-62-5.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/27b2e153-a298-423f-8abd-20631075239e-IMG_9912.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/3a48a375-c7ab-408e-b736-e91e33722881-IMG_9913.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/e995d931-f460-42d4-af30-db86f7b3a70e-IMG_9920.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/dbcf8a80-24cf-4d55-9486-edd106e8e203-IMG_9924.jpeg'
+                ]
+            },
+            {
+                name: '智能门锁建模',
+                tag: '产品建模-精修',
+                cover: 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/dbf5ad26-945c-47c4-b60b-2d2a78ebbc1c-01.jpeg',
+                desc: '智能门锁产品三维建模与精修，多角度展示产品结构与细节，还原深灰色金属质感，输出高清商用效果图',
+                service: '3D建模 / 材质渲染 / 商用效果图',
+                time: '2024年',
+                gallery: [
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/2bd01a98-22dc-44e5-b5bc-3087df5a5512-15.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/0c993a4b-0b84-4af1-9270-43a2eea6afcb-16.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/771914b6-db32-4b80-8597-8af7fa9f5052-17.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/d646c263-f8da-4f32-ad61-0b299b6f25d1-18.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/cba1c3eb-af42-4b6b-a237-716b35620a9c-19.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/5bc3b4b0-d0c5-4af6-a0ed-be9d86e47a26-20.jpeg'
+                ]
+            },
+            {
+                name: '智能设备建模',
+                tag: '产品建模-精修',
+                cover: 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/04d9ff80-8ed8-435f-aa09-c0243880da9e-T2__.70.jpg',
+                desc: '智能设备产品三维建模，展示产品外观设计与功能细节，还原科技感材质，适配电商与品牌宣传场景',
+                service: '3D建模 / 产品渲染 / 商用效果图',
+                time: '2024年',
+                gallery: [
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/efe222ef-06dc-4464-9941-a4de6393d6a3-T2__.79.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/dbcf36cf-9949-4879-89ed-9a327d14be6d-T2__.80.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/1e4eb769-1486-4bb0-b44f-ad4f6fd05f1c-T2__.81.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/f83636a9-b123-44e5-945c-344c6c2e5910-T2__.87.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/fb3797f3-b926-4f71-a9bb-6298f617d744-T2__.88.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/12307f42-5a09-4c76-bfe8-bc56a5911460-T2__.92.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/cc63f786-a8ad-4f73-a51b-6c398a0c89ef-T2__.101.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/17b7e23b-3cc0-46e6-8c43-73d7bba75f93-T2__.74.jpeg'
+                ]
+            }
+        ];
+
+        const renderCaseBtn = document.getElementById('renderCaseBtn');
+        const renderCaseListModal = document.getElementById('renderCaseListModal');
+        const renderCaseListBack = document.getElementById('renderCaseListBack');
+        const renderCaseListClose = document.getElementById('renderCaseListClose');
+
+        if (renderCaseBtn) {
+            renderCaseBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                renderCaseListModal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            });
+        }
+
+        function closeRenderCaseList() {
+            renderCaseListModal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        if (renderCaseListBack) renderCaseListBack.addEventListener('click', closeRenderCaseList);
+        if (renderCaseListClose) renderCaseListClose.addEventListener('click', closeRenderCaseList);
+
+        const renderCaseDetailModal = document.getElementById('renderCaseDetailModal');
+        const renderCaseDetailBack = document.getElementById('renderCaseDetailBack');
+        const renderCaseDetailClose = document.getElementById('renderCaseDetailClose');
+
+        document.querySelectorAll('#renderCaseListModal .case-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const index = parseInt(card.dataset.case);
+                const data = renderCaseData[index];
+                document.getElementById('renderCaseDetailCover').src = data.cover;
+                const gallery = document.getElementById('renderCaseDetailGallery');
+                gallery.innerHTML = '';
+                data.gallery.forEach(src => {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    gallery.appendChild(img);
+                });
+                renderCaseDetailModal.classList.add('open');
+                renderCaseDetailModal.scrollTop = 0;
+            });
+        });
+
+        function closeRenderCaseDetail() {
+            renderCaseDetailModal.classList.remove('open');
+        }
+        if (renderCaseDetailBack) {
+            renderCaseDetailBack.addEventListener('click', () => {
+                closeRenderCaseDetail();
+                renderCaseListModal.classList.add('open');
+            });
+        }
+        if (renderCaseDetailClose) renderCaseDetailClose.addEventListener('click', closeRenderCaseDetail);
+
+        // ========== 04 AIGC轮播 ==========
+        const aigcSlides = document.querySelectorAll('#aigcCarousel > div');
+        const aigcDots = document.querySelectorAll('.aigc-dot');
+        const aigcPrevBtn = document.querySelector('.aigc-prev');
+        const aigcNextBtn = document.querySelector('.aigc-next');
+        let currentAigc = 0;
+        const totalAigcSlides = aigcSlides.length;
+
+        function showAigcSlide(index) {
+            aigcSlides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.style.opacity = '1';
+                    slide.style.transform = 'translateX(0) scale(1) rotateY(0deg)';
+                    slide.style.zIndex = '3';
+                } else {
+                    slide.style.opacity = '0';
+                    slide.style.transform = 'translateX(80px) scale(0.85) rotateY(-15deg)';
+                    slide.style.zIndex = '2';
+                }
+            });
+
+            aigcDots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.style.background = '#4facfe';
+                } else {
+                    dot.style.background = 'rgba(255,255,255,0.3)';
+                }
+            });
+            currentAigc = index;
+        }
+
+        if (aigcNextBtn) {
+            aigcNextBtn.addEventListener('click', () => {
+                const next = (currentAigc + 1) % totalAigcSlides;
+                showAigcSlide(next);
+            });
+        }
+
+        if (aigcPrevBtn) {
+            aigcPrevBtn.addEventListener('click', () => {
+                const prev = (currentAigc - 1 + totalAigcSlides) % totalAigcSlides;
+                showAigcSlide(prev);
+            });
+        }
+
+        if (aigcDots.length > 0) {
+            aigcDots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    showAigcSlide(parseInt(dot.dataset.index));
+                });
+            });
+        }
+
+        // 自动轮播
+        setInterval(() => {
+            const next = (currentAigc + 1) % totalAigcSlides;
+            showAigcSlide(next);
+        }, 5000);
+
+        // 初始化
+        showAigcSlide(0);
+
+        // 04 APP交互页面设计案例系统
+        const aigcCaseData = [
+            {
+                name: 'APP页面展示案例1',
+                tag: 'APP页面展示',
+                cover: 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/80470fa6-d31a-444e-9506-84cd6322392d-__________4_.mp4',
+                desc: 'APP交互页面设计，包含界面设计、交互原型、视觉规范等全套移动端设计服务',
+                service: '界面设计 / 交互原型 / 视觉规范',
+                time: '2024年',
+                gallery: [
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/efaa6dbf-3d81-4ded-aea4-6d91290f35c1-_____07.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/26e328ad-5065-46a4-ba96-6cdaa794e43d-_____08.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/47dc8bcf-32f8-4f01-bf02-f7d04b814587-_____09.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/37ce83b7-0d2d-4652-9c6f-2a3daab3006b-__.jpg'
+                ]
+            },
+            {
+                name: 'APP页面展示案例2',
+                tag: 'APP页面展示',
+                cover: 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/d3825abb-80c1-49ee-b819-6e6b8129cd28-__________2___1_.mp4',
+                desc: 'APP交互页面设计，包含界面设计、交互原型、视觉规范等全套移动端设计服务',
+                service: '界面设计 / 交互原型 / 视觉规范',
+                time: '2024年',
+                gallery: [
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/6c01c1bf-36af-4307-b7df-0d441d4e260b-1.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/ef73ade9-615c-48c2-9ff0-abe607b77639-2.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/b3529c55-ade9-44cd-98ce-a82c1762a975-3.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/8bc72c38-1270-4e41-bc46-b60d489ac313-4.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/4787f6f8-ed83-43be-8938-f483cab24dd1-5.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/91b4fcfb-d56d-4860-b238-7d74e00894ea-6.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/ca64d9c0-62d5-461a-8cbc-6bb0228a5929-7.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/d881a539-4d4e-4d3b-8044-9b01824f2db8-8.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/64aa4d00-f4df-4aa6-9c89-d34d89bb902d-9.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/20cd4cd4-81d6-46d7-ae37-cb39b6de8c00-10.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/cdec5da6-a454-49ce-b139-f14c239fb04a-11.jpeg'
+                ]
+            },
+            {
+                name: 'APP页面展示案例3',
+                tag: 'APP页面展示',
+                cover: 'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/77581db3-4728-4398-842d-38f85f942374-_____10.jpeg',
+                desc: 'APP交互页面设计，包含界面设计、交互原型、视觉规范等全套移动端设计服务',
+                service: '界面设计 / 交互原型 / 视觉规范',
+                time: '2024年',
+                gallery: [
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/3d15c2f6-bd61-45ff-ac2c-2b78528f9c81-_____11.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/e727f132-f010-4e94-b72f-2c0199d1150a-_____12.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/77d0d657-5438-48e1-bd39-ee0044dc739d-_____13.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/bde07fd9-9d83-45ee-873b-ee3b3219c15b-_____14.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/115c748a-5c10-467c-af1b-9c7d1b0d81a4-_____15.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/292492ea-9334-4681-b38a-4e2dd97153b6-_____16.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/9c3800a3-1143-4eaa-92c8-ecdb2449bb33-_____17.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/56223062-60ae-4953-82ea-06608ce2ad2d-_____18.jpeg',
+                    'C:/Users/Administrator/.claude/uploads/3934090a-69c6-48dd-8f33-991634462648/fd993b69-3dcd-4ceb-8f22-46934525c4e1-_____19.jpeg'
+                ]
+            }
+        ];
+
+        const aigcCaseBtn = document.getElementById('aigcCaseBtn');
+        const aigcCaseListModal = document.getElementById('aigcCaseListModal');
+        const aigcCaseListBack = document.getElementById('aigcCaseListBack');
+        const aigcCaseListClose = document.getElementById('aigcCaseListClose');
+
+        if (aigcCaseBtn) {
+            aigcCaseBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                aigcCaseListModal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            });
+        }
+
+        function closeAigcCaseList() {
+            aigcCaseListModal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        if (aigcCaseListBack) aigcCaseListBack.addEventListener('click', closeAigcCaseList);
+        if (aigcCaseListClose) aigcCaseListClose.addEventListener('click', closeAigcCaseList);
+
+        const aigcCaseDetailModal = document.getElementById('aigcCaseDetailModal');
+        const aigcCaseDetailBack = document.getElementById('aigcCaseDetailBack');
+        const aigcCaseDetailClose = document.getElementById('aigcCaseDetailClose');
+
+        document.querySelectorAll('#aigcCaseListModal .case-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const index = parseInt(card.dataset.case);
+                const data = aigcCaseData[index];
+                const coverEl = document.getElementById('aigcCaseDetailCover');
+                if (data.cover.endsWith('.mp4')) {
+                    const parent = coverEl.parentNode;
+                    coverEl.style.display = 'none';
+                    let videoCover = document.getElementById('aigcCaseDetailCoverVideo');
+                    if (!videoCover) {
+                        videoCover = document.createElement('video');
+                        videoCover.id = 'aigcCaseDetailCoverVideo';
+                        videoCover.autoplay = true;
+                        videoCover.loop = true;
+                        videoCover.muted = true;
+                        videoCover.playsInline = true;
+                        videoCover.style.width = '100%';
+                        videoCover.style.borderRadius = '12px';
+                        parent.insertBefore(videoCover, coverEl);
+                    }
+                    videoCover.src = data.cover;
+                    videoCover.style.display = 'block';
+                } else {
+                    let videoCover = document.getElementById('aigcCaseDetailCoverVideo');
+                    if (videoCover) videoCover.style.display = 'none';
+                    coverEl.style.display = 'block';
+                    coverEl.src = data.cover;
+                }
+                const gallery = document.getElementById('aigcCaseDetailGallery');
+                gallery.innerHTML = '';
+                gallery.style.display = 'flex';
+                gallery.style.flexWrap = 'wrap';
+                gallery.style.gap = '16px';
+                data.gallery.forEach(src => {
+                    if (src.endsWith('.mp4')) {
+                        const video = document.createElement('video');
+                        video.src = src;
+                        video.autoplay = true;
+                        video.loop = true;
+                        video.muted = true;
+                        video.playsInline = true;
+                        video.style.flex = '1 1 calc(33.333% - 11px)';
+                        video.style.minWidth = '200px';
+                        video.style.borderRadius = '8px';
+                        video.style.objectFit = 'cover';
+                        gallery.appendChild(video);
+                    } else {
+                        const img = document.createElement('img');
+                        img.src = src;
+                        img.style.flex = '1 1 calc(33.333% - 11px)';
+                        img.style.minWidth = '200px';
+                        img.style.borderRadius = '8px';
+                        img.style.objectFit = 'cover';
+                        gallery.appendChild(img);
+                    }
+                });
+                aigcCaseDetailModal.classList.add('open');
+                aigcCaseDetailModal.scrollTop = 0;
+            });
+        });
+
+        function closeAigcCaseDetail() {
+            aigcCaseDetailModal.classList.remove('open');
+        }
+        if (aigcCaseDetailBack) {
+            aigcCaseDetailBack.addEventListener('click', () => {
+                closeAigcCaseDetail();
+                aigcCaseListModal.classList.add('open');
+            });
+        }
+        if (aigcCaseDetailClose) aigcCaseDetailClose.addEventListener('click', closeAigcCaseDetail);
+
+        // 移动端菜单
+        const menuBtn = document.getElementById('menuBtn');
+        const nav = document.getElementById('nav');
+        menuBtn.addEventListener('click', () => {
+            nav.classList.toggle('open');
+        });
+        nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('open');
+            });
+        });
+    </script>
+</body>
+</html>
